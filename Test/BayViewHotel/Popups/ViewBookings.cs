@@ -19,6 +19,12 @@ namespace BayViewHotel.Popups
 
         private void ViewBookings_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'bayViewHotelDataSet.CustomerBooking' table. You can move, or remove it, as needed.
+            this.customerBookingTableAdapter.Fill(this.bayViewHotelDataSet.CustomerBooking);
+            // TODO: This line of code loads data into the 'bayViewHotelDataSet.tblStaff' table. You can move, or remove it, as needed.
+            this.tblStaffTableAdapter.Fill(this.bayViewHotelDataSet.tblStaff);
+            // TODO: This line of code loads data into the 'bayViewHotelDataSet.tblCustomer' table. You can move, or remove it, as needed.
+            this.tblCustomerTableAdapter.Fill(this.bayViewHotelDataSet.tblCustomer);
             // TODO: This line of code loads data into the 'bayViewHotelDataSet.tblBooking' table. You can move, or remove it, as needed.
             this.tblBookingTableAdapter.Fill(this.bayViewHotelDataSet.tblBooking);
 
