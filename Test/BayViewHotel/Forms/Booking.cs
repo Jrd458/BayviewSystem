@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BayViewHotel.Popups;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace BayViewHotel.Forms
         public Booking()
         {
             InitializeComponent();
+        }
+
+        private void btnViewBookings_Click(object sender, EventArgs e)
+        {
+            ViewBookings form = new ViewBookings();
+            form.ShowDialog();
         }
     }
 }

@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
+            this.kieranTestDataSet = new BayViewHotel.KieranTestDataSet();
+            this.tblKieranBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tbl_KieranTableAdapter = new BayViewHotel.KieranTestDataSetTableAdapters.Tbl_KieranTableAdapter();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.kieranTestDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblKieranBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -41,6 +47,20 @@
             this.label1.Size = new System.Drawing.Size(164, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Our summary";
+            // 
+            // kieranTestDataSet
+            // 
+            this.kieranTestDataSet.DataSetName = "KieranTestDataSet";
+            this.kieranTestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblKieranBindingSource
+            // 
+            this.tblKieranBindingSource.DataMember = "Tbl_Kieran";
+            this.tblKieranBindingSource.DataSource = this.kieranTestDataSet;
+            // 
+            // tbl_KieranTableAdapter
+            // 
+            this.tbl_KieranTableAdapter.ClearBeforeFill = true;
             // 
             // reportViewer1
             // 
@@ -68,6 +88,8 @@
             this.Name = "Home";
             this.Text = "Home";
             this.Load += new System.EventHandler(this.Home_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.kieranTestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblKieranBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -76,6 +98,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private KieranTestDataSet kieranTestDataSet;
+        private System.Windows.Forms.BindingSource tblKieranBindingSource;
+        private KieranTestDataSetTableAdapters.Tbl_KieranTableAdapter tbl_KieranTableAdapter;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

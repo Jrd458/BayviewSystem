@@ -22,10 +22,12 @@ namespace BayViewHotel.Forms
 
         private void Home_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'kieranTestDataSet.Tbl_Kieran' table. You can move, or remove it, as needed.
+            this.tbl_KieranTableAdapter.Fill(this.kieranTestDataSet.Tbl_Kieran);
             //IReportServerCredentials creds = new CustomReportCredentials("Administrator", "Cambrian@1", "");
             NetworkCredential customCred = new NetworkCredential("Administrator", "Cambrian@1", "WIN-41GL1FSD01Q");
-            this.reportViewer1.ServerReport.ReportServerCredentials.NetworkCredentials = customCred;
-            this.reportViewer1.RefreshReport();
+            //this.reportViewer1.ServerReport.ReportServerCredentials.NetworkCredentials = customCred;
+            //this.reportViewer1.RefreshReport();
         }
     }
 }

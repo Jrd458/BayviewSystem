@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BayViewHotelDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Classes\CustomReportCredentials.cs" />
     <Compile Include="Forms\Accounts.cs">
       <SubType>Form</SubType>
@@ -123,6 +129,12 @@
     <Compile Include="Popups\PopupAbout.Designer.cs">
       <DependentUpon>PopupAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popups\ViewBookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\ViewBookings.Designer.cs">
+      <DependentUpon>ViewBookings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -147,6 +159,9 @@
     <EmbeddedResource Include="Popups\PopupAbout.resx">
       <DependentUpon>PopupAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Popups\ViewBookings.resx">
+      <DependentUpon>ViewBookings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -157,6 +172,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="BayViewHotelDataSet.xsc">
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BayViewHotelDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BayViewHotelDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BayViewHotelDataSet.xss">
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </None>
     <None Include="KieranTestDataSet.xsc">
       <DependentUpon>KieranTestDataSet.xsd</DependentUpon>
     </None>
