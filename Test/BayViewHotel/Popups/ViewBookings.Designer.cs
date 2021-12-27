@@ -31,17 +31,6 @@ namespace BayViewHotel.Popups
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tblBookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bayViewHotelDataSet = new BayViewHotel.BayViewHotelDataSet();
-            this.tblBookingTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblBookingTableAdapter();
-            this.tblCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblCustomerTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblCustomerTableAdapter();
-            this.tblStaffBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblStaffTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblStaffTableAdapter();
-            this.tblBookingBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bayViewHotelDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerBookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerBookingTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.CustomerBookingTableAdapter();
             this.bookingReferenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,14 +39,25 @@ namespace BayViewHotel.Popups
             this.checkOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdByStaffDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnClmManageBooking = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.customerBookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bayViewHotelDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bayViewHotelDataSet = new BayViewHotel.BayViewHotelDataSet();
+            this.tblBookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblBookingTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblBookingTableAdapter();
+            this.tblCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblCustomerTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblCustomerTableAdapter();
+            this.tblStaffBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblStaffTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblStaffTableAdapter();
+            this.tblBookingBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.customerBookingTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.CustomerBookingTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblBookingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBookingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBookingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblStaffBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblBookingBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerBookingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -86,57 +86,7 @@ namespace BayViewHotel.Popups
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(913, 621);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // tblBookingBindingSource
-            // 
-            this.tblBookingBindingSource.DataMember = "tblBooking";
-            this.tblBookingBindingSource.DataSource = this.bayViewHotelDataSet;
-            // 
-            // bayViewHotelDataSet
-            // 
-            this.bayViewHotelDataSet.DataSetName = "BayViewHotelDataSet";
-            this.bayViewHotelDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblBookingTableAdapter
-            // 
-            this.tblBookingTableAdapter.ClearBeforeFill = true;
-            // 
-            // tblCustomerBindingSource
-            // 
-            this.tblCustomerBindingSource.DataMember = "tblCustomer";
-            this.tblCustomerBindingSource.DataSource = this.bayViewHotelDataSet;
-            // 
-            // tblCustomerTableAdapter
-            // 
-            this.tblCustomerTableAdapter.ClearBeforeFill = true;
-            // 
-            // tblStaffBindingSource
-            // 
-            this.tblStaffBindingSource.DataMember = "tblStaff";
-            this.tblStaffBindingSource.DataSource = this.bayViewHotelDataSet;
-            // 
-            // tblStaffTableAdapter
-            // 
-            this.tblStaffTableAdapter.ClearBeforeFill = true;
-            // 
-            // tblBookingBindingSource1
-            // 
-            this.tblBookingBindingSource1.DataMember = "tblBooking";
-            this.tblBookingBindingSource1.DataSource = this.bayViewHotelDataSet;
-            // 
-            // bayViewHotelDataSetBindingSource
-            // 
-            this.bayViewHotelDataSetBindingSource.DataSource = this.bayViewHotelDataSet;
-            this.bayViewHotelDataSetBindingSource.Position = 0;
-            // 
-            // customerBookingBindingSource
-            // 
-            this.customerBookingBindingSource.DataMember = "CustomerBooking";
-            this.customerBookingBindingSource.DataSource = this.bayViewHotelDataSetBindingSource;
-            // 
-            // customerBookingTableAdapter
-            // 
-            this.customerBookingTableAdapter.ClearBeforeFill = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // bookingReferenceDataGridViewTextBoxColumn
             // 
@@ -195,6 +145,57 @@ namespace BayViewHotel.Popups
             this.BtnClmManageBooking.Text = "Manage";
             this.BtnClmManageBooking.UseColumnTextForButtonValue = true;
             // 
+            // customerBookingBindingSource
+            // 
+            this.customerBookingBindingSource.DataMember = "CustomerBooking";
+            this.customerBookingBindingSource.DataSource = this.bayViewHotelDataSetBindingSource;
+            // 
+            // bayViewHotelDataSetBindingSource
+            // 
+            this.bayViewHotelDataSetBindingSource.DataSource = this.bayViewHotelDataSet;
+            this.bayViewHotelDataSetBindingSource.Position = 0;
+            // 
+            // bayViewHotelDataSet
+            // 
+            this.bayViewHotelDataSet.DataSetName = "BayViewHotelDataSet";
+            this.bayViewHotelDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblBookingBindingSource
+            // 
+            this.tblBookingBindingSource.DataMember = "tblBooking";
+            this.tblBookingBindingSource.DataSource = this.bayViewHotelDataSet;
+            // 
+            // tblBookingTableAdapter
+            // 
+            this.tblBookingTableAdapter.ClearBeforeFill = true;
+            // 
+            // tblCustomerBindingSource
+            // 
+            this.tblCustomerBindingSource.DataMember = "tblCustomer";
+            this.tblCustomerBindingSource.DataSource = this.bayViewHotelDataSet;
+            // 
+            // tblCustomerTableAdapter
+            // 
+            this.tblCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // tblStaffBindingSource
+            // 
+            this.tblStaffBindingSource.DataMember = "tblStaff";
+            this.tblStaffBindingSource.DataSource = this.bayViewHotelDataSet;
+            // 
+            // tblStaffTableAdapter
+            // 
+            this.tblStaffTableAdapter.ClearBeforeFill = true;
+            // 
+            // tblBookingBindingSource1
+            // 
+            this.tblBookingBindingSource1.DataMember = "tblBooking";
+            this.tblBookingBindingSource1.DataSource = this.bayViewHotelDataSet;
+            // 
+            // customerBookingTableAdapter
+            // 
+            this.customerBookingTableAdapter.ClearBeforeFill = true;
+            // 
             // ViewBookings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,13 +210,13 @@ namespace BayViewHotel.Popups
             this.Text = "Manage Bookings";
             this.Load += new System.EventHandler(this.ViewBookings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblBookingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBookingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBookingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblStaffBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblBookingBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerBookingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

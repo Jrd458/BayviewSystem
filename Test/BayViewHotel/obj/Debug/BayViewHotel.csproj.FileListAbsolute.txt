@@ -75,3 +75,9 @@ C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.c
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.exe
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.pdb
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.ViewBookings.resources
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.ManageBooking.resources
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Login.LoginForm.resources
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.xml
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml

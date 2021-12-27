@@ -202,7 +202,7 @@
             // 
             // timeEnd
             // 
-            this.timeEnd.CustomFormat = "";
+            this.timeEnd.CustomFormat = "HH:mm tt";
             this.timeEnd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.timeEnd.Location = new System.Drawing.Point(268, 111);
@@ -242,7 +242,7 @@
             // 
             // timeStart
             // 
-            this.timeStart.CustomFormat = "";
+            this.timeStart.CustomFormat = "HH:mm tt";
             this.timeStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.timeStart.Location = new System.Drawing.Point(268, 63);
@@ -250,6 +250,7 @@
             this.timeStart.ShowUpDown = true;
             this.timeStart.Size = new System.Drawing.Size(96, 29);
             this.timeStart.TabIndex = 2;
+            this.timeStart.Value = new System.DateTime(2021, 12, 27, 12, 30, 0, 0);
             // 
             // dateStart
             // 
@@ -281,6 +282,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Booking";
             this.Text = "Booking";
+            this.Load += new System.EventHandler(this.Booking_Load);
             this.grpBookingSearch.ResumeLayout(false);
             this.grpBookingSearch.PerformLayout();
             this.groupBox1.ResumeLayout(false);

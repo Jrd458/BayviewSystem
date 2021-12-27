@@ -23,5 +23,12 @@ namespace BayViewHotel.Forms
             ViewBookings form = new ViewBookings();
             form.ShowDialog();
         }
+
+        private void Booking_Load(object sender, EventArgs e)
+        {
+            DateTime datetime = new DateTime(2000, 1, 1, 12, 30, 0);
+            timeStart.Value = datetime;
+            timeEnd.Value = datetime;
+        }
     }
 }

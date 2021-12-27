@@ -29,5 +29,15 @@ namespace BayViewHotel.Popups
             this.tblBookingTableAdapter.Fill(this.bayViewHotelDataSet.tblBooking);
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["BtnClmManageBooking"].Index && e.RowIndex >= 0)
+            {
+                //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                ManageBooking formManageBooking = new ManageBooking(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                formManageBooking.ShowDialog();
+            }
+        }
     }
 }
