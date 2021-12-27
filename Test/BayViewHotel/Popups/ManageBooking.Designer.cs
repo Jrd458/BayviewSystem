@@ -39,19 +39,21 @@ namespace BayViewHotel.Popups
             this.label3 = new System.Windows.Forms.Label();
             this.timeStart = new System.Windows.Forms.DateTimePicker();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numAdults = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numChildren = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboRoomType = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboRoomNo = new System.Windows.Forms.ComboBox();
+            this.chkBreakfast = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.chkDisability = new System.Windows.Forms.CheckBox();
+            this.lblChooseRoomInfo = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numAdults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChildren)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -155,13 +157,13 @@ namespace BayViewHotel.Popups
             this.dateStart.Size = new System.Drawing.Size(173, 29);
             this.dateStart.TabIndex = 9;
             // 
-            // numericUpDown1
+            // numAdults
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(35, 261);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(41, 25);
-            this.numericUpDown1.TabIndex = 17;
+            this.numAdults.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numAdults.Location = new System.Drawing.Point(35, 261);
+            this.numAdults.Name = "numAdults";
+            this.numAdults.Size = new System.Drawing.Size(41, 25);
+            this.numAdults.TabIndex = 17;
             // 
             // label2
             // 
@@ -173,13 +175,13 @@ namespace BayViewHotel.Popups
             this.label2.TabIndex = 18;
             this.label2.Text = "Adults / Children";
             // 
-            // numericUpDown2
+            // numChildren
             // 
-            this.numericUpDown2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown2.Location = new System.Drawing.Point(94, 261);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(41, 25);
-            this.numericUpDown2.TabIndex = 19;
+            this.numChildren.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numChildren.Location = new System.Drawing.Point(94, 261);
+            this.numChildren.Name = "numChildren";
+            this.numChildren.Size = new System.Drawing.Size(41, 25);
+            this.numChildren.TabIndex = 19;
             // 
             // label7
             // 
@@ -191,18 +193,18 @@ namespace BayViewHotel.Popups
             this.label7.TabIndex = 20;
             this.label7.Text = "Room Type";
             // 
-            // comboBox1
+            // comboRoomType
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboRoomType.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboRoomType.FormattingEnabled = true;
+            this.comboRoomType.Items.AddRange(new object[] {
             "Single",
             "Double",
             "Family"});
-            this.comboBox1.Location = new System.Drawing.Point(145, 179);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 25);
-            this.comboBox1.TabIndex = 21;
+            this.comboRoomType.Location = new System.Drawing.Point(145, 179);
+            this.comboRoomType.Name = "comboRoomType";
+            this.comboRoomType.Size = new System.Drawing.Size(135, 25);
+            this.comboRoomType.TabIndex = 21;
             // 
             // label8
             // 
@@ -214,28 +216,28 @@ namespace BayViewHotel.Popups
             this.label8.TabIndex = 22;
             this.label8.Text = "Room Booked";
             // 
-            // comboBox2
+            // comboRoomNo
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboRoomNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboRoomNo.FormattingEnabled = true;
+            this.comboRoomNo.Items.AddRange(new object[] {
             "Single",
             "Double",
             "Family"});
-            this.comboBox2.Location = new System.Drawing.Point(343, 178);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(135, 25);
-            this.comboBox2.TabIndex = 23;
+            this.comboRoomNo.Location = new System.Drawing.Point(343, 178);
+            this.comboRoomNo.Name = "comboRoomNo";
+            this.comboRoomNo.Size = new System.Drawing.Size(69, 25);
+            this.comboRoomNo.TabIndex = 23;
             // 
-            // checkBox1
+            // chkBreakfast
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(187, 269);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(67, 17);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.Text = "Opted In";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkBreakfast.AutoSize = true;
+            this.chkBreakfast.Location = new System.Drawing.Point(187, 269);
+            this.chkBreakfast.Name = "chkBreakfast";
+            this.chkBreakfast.Size = new System.Drawing.Size(67, 17);
+            this.chkBreakfast.TabIndex = 24;
+            this.chkBreakfast.Text = "Opted In";
+            this.chkBreakfast.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -257,32 +259,56 @@ namespace BayViewHotel.Popups
             this.label10.TabIndex = 27;
             this.label10.Text = "Disability";
             // 
-            // checkBox2
+            // chkDisability
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(27, 183);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(69, 17);
-            this.checkBox2.TabIndex = 26;
-            this.checkBox2.Text = "Required";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkDisability.AutoSize = true;
+            this.chkDisability.Location = new System.Drawing.Point(27, 183);
+            this.chkDisability.Name = "chkDisability";
+            this.chkDisability.Size = new System.Drawing.Size(69, 17);
+            this.chkDisability.TabIndex = 26;
+            this.chkDisability.Text = "Required";
+            this.chkDisability.UseVisualStyleBackColor = true;
+            this.chkDisability.CheckedChanged += new System.EventHandler(this.chkDisability_CheckedChanged);
+            // 
+            // lblChooseRoomInfo
+            // 
+            this.lblChooseRoomInfo.AutoSize = true;
+            this.lblChooseRoomInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblChooseRoomInfo.Location = new System.Drawing.Point(340, 142);
+            this.lblChooseRoomInfo.Name = "lblChooseRoomInfo";
+            this.lblChooseRoomInfo.Size = new System.Drawing.Size(105, 13);
+            this.lblChooseRoomInfo.TabIndex = 28;
+            this.lblChooseRoomInfo.Text = "Please select a room";
+            this.lblChooseRoomInfo.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(574, 261);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 34);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // ManageBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 450);
+            this.ClientSize = new System.Drawing.Size(685, 312);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblChooseRoomInfo);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.chkDisability);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.chkBreakfast);
+            this.Controls.Add(this.comboRoomNo);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboRoomType);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numChildren);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numAdults);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.timeEnd);
@@ -300,8 +326,8 @@ namespace BayViewHotel.Popups
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Booking";
             this.Load += new System.EventHandler(this.ManageBooking_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAdults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChildren)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,16 +345,18 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker timeStart;
         private System.Windows.Forms.DateTimePicker dateStart;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numAdults;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numChildren;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboRoomType;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox comboRoomNo;
+        private System.Windows.Forms.CheckBox chkBreakfast;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkDisability;
+        private System.Windows.Forms.Label lblChooseRoomInfo;
+        private System.Windows.Forms.Button button1;
     }
 }

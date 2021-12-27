@@ -127,7 +127,7 @@ namespace BayViewHotel.Login
                 btnClose.Enabled = false;
                 
                 lblError.Visible = false;
-                string userName = txtUsername.Text;
+                string userName = txtUsername.Text.ToLower();
                 string password = txtPassword.Text;
 
                 if (IsUserExists(userName))
