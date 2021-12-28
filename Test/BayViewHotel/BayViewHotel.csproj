@@ -273,6 +273,7 @@
     <None Include="Resources\add_customer_icon.png" />
     <None Include="Resources\transparent_bg_login.png" />
     <None Include="Resources\save_icon.png" />
+    <None Include="Resources\favicon.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

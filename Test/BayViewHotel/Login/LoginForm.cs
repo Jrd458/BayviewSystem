@@ -119,17 +119,17 @@ namespace BayViewHotel.Login
 
         private void Login()
         {
+            txtUsername.Enabled = false;
+            txtPassword.Enabled = false;
+            btnLogin.Enabled = false;
+            btnClose.Enabled = false;
+
+            lblError.Visible = false;
+            string userName = txtUsername.Text.ToLower();
+            string password = txtPassword.Text;
+
             try
             {
-                txtUsername.Enabled = false;
-                txtPassword.Enabled = false;
-                btnLogin.Enabled = false;
-                btnClose.Enabled = false;
-                
-                lblError.Visible = false;
-                string userName = txtUsername.Text.ToLower();
-                string password = txtPassword.Text;
-
                 if (IsUserExists(userName))
                 {
                     string userSalt = GetSaltForUser(userName);
@@ -169,11 +169,13 @@ namespace BayViewHotel.Login
                     enableGui();
                 } else
                 {
+                    LogLogin(userName, false);
                     enableGui();
                     lblError.Visible = true;
                 }
             } catch (Exception ex)
             {
+                LogLogin(userName, false);
                 enableGui();
                 MessageBox.Show(ex.Message);
             }
