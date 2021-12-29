@@ -102,5 +102,16 @@ namespace BayViewHotel.Popups
 
             return result;
         }
+
+        private void btnBookingCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnBookingSubmit_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("this currently does nothing");
+            this.Close();
+        }
     }
 }

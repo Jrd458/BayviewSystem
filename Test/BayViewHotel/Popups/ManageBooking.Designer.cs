@@ -51,7 +51,8 @@ namespace BayViewHotel.Popups
             this.label10 = new System.Windows.Forms.Label();
             this.chkDisability = new System.Windows.Forms.CheckBox();
             this.lblChooseRoomInfo = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBookingCancel = new System.Windows.Forms.Button();
+            this.btnBookingSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numAdults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChildren)).BeginInit();
             this.SuspendLayout();
@@ -281,22 +282,41 @@ namespace BayViewHotel.Popups
             this.lblChooseRoomInfo.Text = "Please select a room";
             this.lblChooseRoomInfo.Visible = false;
             // 
-            // button1
+            // btnBookingCancel
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(574, 261);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 34);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBookingCancel.BackgroundImage = global::BayViewHotel.Properties.Resources.cancel_icon_red_cross1;
+            this.btnBookingCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBookingCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBookingCancel.FlatAppearance.BorderSize = 0;
+            this.btnBookingCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBookingCancel.Location = new System.Drawing.Point(624, 256);
+            this.btnBookingCancel.Name = "btnBookingCancel";
+            this.btnBookingCancel.Size = new System.Drawing.Size(40, 40);
+            this.btnBookingCancel.TabIndex = 33;
+            this.btnBookingCancel.UseVisualStyleBackColor = true;
+            this.btnBookingCancel.Click += new System.EventHandler(this.btnBookingCancel_Click);
+            // 
+            // btnBookingSubmit
+            // 
+            this.btnBookingSubmit.BackgroundImage = global::BayViewHotel.Properties.Resources.submit_icon_green_tick;
+            this.btnBookingSubmit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBookingSubmit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBookingSubmit.FlatAppearance.BorderSize = 0;
+            this.btnBookingSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBookingSubmit.Location = new System.Drawing.Point(563, 256);
+            this.btnBookingSubmit.Name = "btnBookingSubmit";
+            this.btnBookingSubmit.Size = new System.Drawing.Size(40, 40);
+            this.btnBookingSubmit.TabIndex = 32;
+            this.btnBookingSubmit.UseVisualStyleBackColor = true;
+            this.btnBookingSubmit.Click += new System.EventHandler(this.btnBookingSubmit_Click);
             // 
             // ManageBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 312);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBookingCancel);
+            this.Controls.Add(this.btnBookingSubmit);
             this.Controls.Add(this.lblChooseRoomInfo);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.chkDisability);
@@ -319,6 +339,7 @@ namespace BayViewHotel.Popups
             this.Controls.Add(this.dateStart);
             this.Controls.Add(this.lblBookedUnder);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "ManageBooking";
             this.ShowIcon = false;
@@ -357,6 +378,7 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox chkDisability;
         private System.Windows.Forms.Label lblChooseRoomInfo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBookingCancel;
+        private System.Windows.Forms.Button btnBookingSubmit;
     }
 }

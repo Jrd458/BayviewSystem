@@ -131,6 +131,26 @@ namespace BayViewHotel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancel_icon_red_cross {
+            get {
+                object obj = ResourceManager.GetObject("cancel_icon_red_cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancel_icon_red_cross1 {
+            get {
+                object obj = ResourceManager.GetObject("cancel_icon_red_cross1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon favicon {
@@ -186,6 +206,16 @@ namespace BayViewHotel.Properties {
         internal static System.Drawing.Bitmap save_icon {
             get {
                 object obj = ResourceManager.GetObject("save_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap submit_icon_green_tick {
+            get {
+                object obj = ResourceManager.GetObject("submit_icon_green_tick", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

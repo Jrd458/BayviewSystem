@@ -147,6 +147,18 @@
     <Compile Include="Popups\PopupAbout.Designer.cs">
       <DependentUpon>PopupAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popups\PopupAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupAddCustomer.Designer.cs">
+      <DependentUpon>PopupAddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupEditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupEditCustomer.Designer.cs">
+      <DependentUpon>PopupEditCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popups\ViewBookings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +194,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\PopupAbout.resx">
       <DependentUpon>PopupAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupAddCustomer.resx">
+      <DependentUpon>PopupAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupEditCustomer.resx">
+      <DependentUpon>PopupEditCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\ViewBookings.resx">
       <DependentUpon>ViewBookings.cs</DependentUpon>
@@ -274,6 +292,8 @@
     <None Include="Resources\transparent_bg_login.png" />
     <None Include="Resources\save_icon.png" />
     <None Include="Resources\favicon.ico" />
+    <None Include="Resources\submit_icon_green_tick.png" />
+    <None Include="Resources\cancel_icon_red_cross.png" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
