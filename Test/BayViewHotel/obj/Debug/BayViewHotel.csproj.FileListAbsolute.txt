@@ -83,3 +83,5 @@ C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\bin\Debug\Microsoft.AspN
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.PopupAddCustomer.resources
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.PopupEditCustomer.resources
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.PopupManageRoom.resources
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.PopupRoomManageOptions.resources

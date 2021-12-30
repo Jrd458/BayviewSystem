@@ -101,7 +101,6 @@ namespace BayViewHotel
                 //login.Show();
                 this.Close();
             }
-            
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)

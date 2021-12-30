@@ -71,7 +71,7 @@ namespace BayViewHotel.Popups
             // 
             this.lblBookedUnder.AutoSize = true;
             this.lblBookedUnder.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookedUnder.Location = new System.Drawing.Point(13, 39);
+            this.lblBookedUnder.Location = new System.Drawing.Point(14, 39);
             this.lblBookedUnder.Name = "lblBookedUnder";
             this.lblBookedUnder.Size = new System.Drawing.Size(92, 17);
             this.lblBookedUnder.TabIndex = 1;
