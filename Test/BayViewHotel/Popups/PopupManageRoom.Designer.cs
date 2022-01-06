@@ -41,6 +41,7 @@ namespace BayViewHotel.Popups
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblValidationError = new System.Windows.Forms.Label();
+            this.btnCreateBooking = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridActiveBookings)).BeginInit();
@@ -124,6 +125,7 @@ namespace BayViewHotel.Popups
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnCreateBooking);
             this.groupBox2.Controls.Add(this.dataGridActiveBookings);
             this.groupBox2.Location = new System.Drawing.Point(17, 171);
             this.groupBox2.Name = "groupBox2";
@@ -148,7 +150,7 @@ namespace BayViewHotel.Popups
             this.dataGridActiveBookings.ShowCellErrors = false;
             this.dataGridActiveBookings.ShowEditingIcon = false;
             this.dataGridActiveBookings.ShowRowErrors = false;
-            this.dataGridActiveBookings.Size = new System.Drawing.Size(464, 281);
+            this.dataGridActiveBookings.Size = new System.Drawing.Size(464, 256);
             this.dataGridActiveBookings.TabIndex = 0;
             // 
             // btnCancel
@@ -189,6 +191,15 @@ namespace BayViewHotel.Popups
             this.lblValidationError.TabIndex = 22;
             this.lblValidationError.Text = "All details fields are required.";
             this.lblValidationError.Visible = false;
+            // 
+            // btnCreateBooking
+            // 
+            this.btnCreateBooking.Location = new System.Drawing.Point(367, 288);
+            this.btnCreateBooking.Name = "btnCreateBooking";
+            this.btnCreateBooking.Size = new System.Drawing.Size(116, 27);
+            this.btnCreateBooking.TabIndex = 1;
+            this.btnCreateBooking.Text = "Create New Booking";
+            this.btnCreateBooking.UseVisualStyleBackColor = true;
             // 
             // PopupManageRoom
             // 
@@ -232,5 +243,6 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblValidationError;
+        private System.Windows.Forms.Button btnCreateBooking;
     }
 }

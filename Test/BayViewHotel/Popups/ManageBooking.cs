@@ -29,9 +29,11 @@ namespace BayViewHotel.Popups
 
         private void chkDisability_CheckedChanged(object sender, EventArgs e)
         {
-            /*********
+            /*
+             * ********
              *  JOEL TO DO PROC
-             *********/
+             * ********
+             */
 
 
             //SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
