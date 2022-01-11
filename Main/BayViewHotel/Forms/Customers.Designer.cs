@@ -33,17 +33,25 @@ namespace BayViewHotel.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchCustomer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.kieranTestDataSet = new BayViewHotel.KieranTestDataSet();
+            this.tblCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bayViewHotelDataSet = new BayViewHotel.BayViewHotelDataSet();
             this.tblKieranBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kieranTestDataSet = new BayViewHotel.KieranTestDataSet();
             this.tbl_KieranTableAdapter = new BayViewHotel.KieranTestDataSetTableAdapters.Tbl_KieranTableAdapter();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wagwanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAddCustomer = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kieranTestDataSet)).BeginInit();
+            this.tblCustomerTableAdapter = new BayViewHotel.BayViewHotelDataSetTableAdapters.tblCustomerTableAdapter();
+            this.dataGridCustomer = new System.Windows.Forms.DataGridView();
+            this.CustomerFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerAddressStreet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerAddressPostcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblKieranBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kieranTestDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCustomer)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +71,7 @@ namespace BayViewHotel.Forms
             this.txtSearchCustomer.Name = "txtSearchCustomer";
             this.txtSearchCustomer.Size = new System.Drawing.Size(406, 33);
             this.txtSearchCustomer.TabIndex = 3;
+            this.txtSearchCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearchCustomer_KeyUp);
             // 
             // label2
             // 
@@ -74,58 +83,35 @@ namespace BayViewHotel.Forms
             this.label2.TabIndex = 4;
             this.label2.Text = "Search Customer...";
             // 
-            // dataGridView1
+            // tblCustomerBindingSource
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.wagwanDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.tblKieranBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 148);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(881, 552);
-            this.dataGridView1.TabIndex = 5;
+            this.tblCustomerBindingSource.DataMember = "tblCustomer";
+            this.tblCustomerBindingSource.DataSource = this.bayViewHotelDataSet;
             // 
-            // kieranTestDataSet
+            // bayViewHotelDataSet
             // 
-            this.kieranTestDataSet.DataSetName = "KieranTestDataSet";
-            this.kieranTestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.bayViewHotelDataSet.DataSetName = "BayViewHotelDataSet";
+            this.bayViewHotelDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tblKieranBindingSource
             // 
             this.tblKieranBindingSource.DataMember = "Tbl_Kieran";
             this.tblKieranBindingSource.DataSource = this.kieranTestDataSet;
             // 
+            // kieranTestDataSet
+            // 
+            this.kieranTestDataSet.DataSetName = "KieranTestDataSet";
+            this.kieranTestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // tbl_KieranTableAdapter
             // 
             this.tbl_KieranTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // wagwanDataGridViewTextBoxColumn
-            // 
-            this.wagwanDataGridViewTextBoxColumn.DataPropertyName = "wagwan";
-            this.wagwanDataGridViewTextBoxColumn.HeaderText = "wagwan";
-            this.wagwanDataGridViewTextBoxColumn.Name = "wagwanDataGridViewTextBoxColumn";
             // 
             // btnAddCustomer
             // 
             this.btnAddCustomer.BackgroundImage = global::BayViewHotel.Properties.Resources.add_customer_icon;
             this.btnAddCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddCustomer.Cursor = System.Windows.Forms.Cursors.Help;
+            this.btnAddCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddCustomer.FlatAppearance.BorderSize = 0;
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustomer.Location = new System.Drawing.Point(869, 89);
@@ -133,14 +119,88 @@ namespace BayViewHotel.Forms
             this.btnAddCustomer.Size = new System.Drawing.Size(40, 40);
             this.btnAddCustomer.TabIndex = 6;
             this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
+            // 
+            // tblCustomerTableAdapter
+            // 
+            this.tblCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridCustomer
+            // 
+            this.dataGridCustomer.AllowUserToAddRows = false;
+            this.dataGridCustomer.AllowUserToDeleteRows = false;
+            this.dataGridCustomer.AllowUserToResizeRows = false;
+            this.dataGridCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustomerFullName,
+            this.CustomerAddressStreet,
+            this.CustomerAddressPostcode,
+            this.CustomerContactNo,
+            this.CustomerEmail});
+            this.dataGridCustomer.Location = new System.Drawing.Point(28, 166);
+            this.dataGridCustomer.MultiSelect = false;
+            this.dataGridCustomer.Name = "dataGridCustomer";
+            this.dataGridCustomer.ReadOnly = true;
+            this.dataGridCustomer.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridCustomer.Size = new System.Drawing.Size(881, 547);
+            this.dataGridCustomer.TabIndex = 7;
+            this.dataGridCustomer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCustomer_CellDoubleClick);
+            // 
+            // CustomerFullName
+            // 
+            this.CustomerFullName.HeaderText = "Full Name";
+            this.CustomerFullName.Name = "CustomerFullName";
+            this.CustomerFullName.ReadOnly = true;
+            this.CustomerFullName.Visible = false;
+            // 
+            // CustomerAddressStreet
+            // 
+            this.CustomerAddressStreet.HeaderText = "Street Address";
+            this.CustomerAddressStreet.Name = "CustomerAddressStreet";
+            this.CustomerAddressStreet.ReadOnly = true;
+            this.CustomerAddressStreet.Visible = false;
+            // 
+            // CustomerAddressPostcode
+            // 
+            this.CustomerAddressPostcode.HeaderText = "Postcode";
+            this.CustomerAddressPostcode.Name = "CustomerAddressPostcode";
+            this.CustomerAddressPostcode.ReadOnly = true;
+            this.CustomerAddressPostcode.Visible = false;
+            // 
+            // CustomerContactNo
+            // 
+            this.CustomerContactNo.HeaderText = "Contact Number";
+            this.CustomerContactNo.Name = "CustomerContactNo";
+            this.CustomerContactNo.ReadOnly = true;
+            this.CustomerContactNo.Visible = false;
+            // 
+            // CustomerEmail
+            // 
+            this.CustomerEmail.HeaderText = "Email";
+            this.CustomerEmail.Name = "CustomerEmail";
+            this.CustomerEmail.ReadOnly = true;
+            this.CustomerEmail.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(28, 147);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(203, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Double click a customer to manage them.";
             // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 725);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridCustomer);
             this.Controls.Add(this.btnAddCustomer);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearchCustomer);
             this.Controls.Add(this.label1);
@@ -148,9 +208,11 @@ namespace BayViewHotel.Forms
             this.Name = "Customers";
             this.Text = "Customers";
             this.Load += new System.EventHandler(this.Customers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kieranTestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bayViewHotelDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblKieranBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kieranTestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCustomer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,13 +223,19 @@ namespace BayViewHotel.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchCustomer;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private KieranTestDataSet kieranTestDataSet;
         private System.Windows.Forms.BindingSource tblKieranBindingSource;
         private KieranTestDataSetTableAdapters.Tbl_KieranTableAdapter tbl_KieranTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wagwanDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnAddCustomer;
+        private BayViewHotelDataSet bayViewHotelDataSet;
+        private System.Windows.Forms.BindingSource tblCustomerBindingSource;
+        private BayViewHotelDataSetTableAdapters.tblCustomerTableAdapter tblCustomerTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridCustomer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerAddressStreet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerAddressPostcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerContactNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerEmail;
+        private System.Windows.Forms.Label label3;
     }
 }

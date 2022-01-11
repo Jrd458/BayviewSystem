@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=6.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.6.0.1\lib\net461\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation, Version=6.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.KeyDerivation.6.0.1\lib\net461\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -59,6 +65,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BayViewHotelDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Classes\CustomReportCredentials.cs" />
     <Compile Include="Forms\Accounts.cs">
       <SubType>Form</SubType>
@@ -117,11 +129,53 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KieranTestDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Login\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ManageBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\ManageBooking.Designer.cs">
+      <DependentUpon>ManageBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popups\PopupAbout.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Popups\PopupAbout.Designer.cs">
       <DependentUpon>PopupAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupAddCustomer.Designer.cs">
+      <DependentUpon>PopupAddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupEditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupEditCustomer.Designer.cs">
+      <DependentUpon>PopupEditCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupManageRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupManageRoom.Designer.cs">
+      <DependentUpon>PopupManageRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupRoomManageOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupRoomManageOptions.Designer.cs">
+      <DependentUpon>PopupRoomManageOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ViewBookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\ViewBookings.Designer.cs">
+      <DependentUpon>ViewBookings.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,8 +198,29 @@
     <EmbeddedResource Include="Forms\Rooms.resx">
       <DependentUpon>Rooms.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\ManageBooking.resx">
+      <DependentUpon>ManageBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Popups\PopupAbout.resx">
       <DependentUpon>PopupAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupAddCustomer.resx">
+      <DependentUpon>PopupAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupEditCustomer.resx">
+      <DependentUpon>PopupEditCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupManageRoom.resx">
+      <DependentUpon>PopupManageRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupRoomManageOptions.resx">
+      <DependentUpon>PopupRoomManageOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\ViewBookings.resx">
+      <DependentUpon>ViewBookings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -157,6 +232,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="BayViewHotelDataSet.xsc">
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BayViewHotelDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BayViewHotelDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BayViewHotelDataSet.xss">
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </None>
     <None Include="KieranTestDataSet.xsc">
       <DependentUpon>KieranTestDataSet.xsd</DependentUpon>
     </None>
@@ -221,6 +307,12 @@
     <None Include="Resources\info_icon.png" />
     <None Include="Resources\logout_icon1.png" />
     <None Include="Resources\add_customer_icon.png" />
+    <None Include="Resources\transparent_bg_login.png" />
+    <None Include="Resources\save_icon.png" />
+    <None Include="Resources\favicon.ico" />
+    <None Include="Resources\submit_icon_green_tick.png" />
+    <None Include="Resources\cancel_icon_red_cross.png" />
+    <None Include="Resources\refresh_icon.png" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

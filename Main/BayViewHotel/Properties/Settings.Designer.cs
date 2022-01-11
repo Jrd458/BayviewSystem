@@ -26,11 +26,11 @@ namespace BayViewHotel.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=51.195.252.182;Initial Catalog=KieranTest;User ID=sa;Password=Cambria" +
-            "n@1")]
-        public string KieranTestConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=51.195.252.182,443;Initial Catalog=BayViewHotel;Persist Security Info" +
+            "=True;User ID=sa;Password=Cambrian@1")]
+        public string ConnectionString {
             get {
-                return ((string)(this["KieranTestConnectionString"]));
+                return ((string)(this["ConnectionString"]));
             }
         }
     }

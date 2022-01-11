@@ -20,7 +20,7 @@ namespace BayViewHotel.Forms
         private void Accounts_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'kieranTestDataSet1.Tbl_joel' table. You can move, or remove it, as needed.
-            this.tbl_joelTableAdapter.Fill(this.kieranTestDataSet1.Tbl_joel);
+            //this.tbl_joelTableAdapter.Fill(this.kieranTestDataSet1.Tbl_joel);
 
         }
     }

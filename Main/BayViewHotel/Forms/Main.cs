@@ -1,4 +1,5 @@
 ﻿using BayViewHotel.Forms;
+using BayViewHotel.Login;
 using BayViewHotel.Popups;
 using System;
 using System.Collections.Generic;
@@ -92,8 +93,20 @@ namespace BayViewHotel
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("closing app", "wagwan", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Are you sure you would like to logout?", "Signing out", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                //LoginForm login = new LoginForm();
+                //login.Show();
+                this.Close();
+            }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LoginForm login = new LoginForm();
+            login.Show();
         }
     }
 }
