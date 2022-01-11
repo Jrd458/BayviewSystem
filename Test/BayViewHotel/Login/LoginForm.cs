@@ -54,12 +54,13 @@ namespace BayViewHotel.Login
         private string GetSaltForUser(string username)
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            con.Open();
 
             string result = null;
 
             try
             {
+                con.Open();
+
                 SqlCommand cmd = new SqlCommand(@"SELECT TOP 1 Salt FROM tblStaff WHERE UserName = @username", con);
                 cmd.Parameters.AddWithValue("@username", username);
 
@@ -90,12 +91,13 @@ namespace BayViewHotel.Login
         private bool IsUserExists(string username)
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            con.Open();
 
             bool result = false;
 
             try
             {
+                con.Open();
+
                 SqlCommand cmd = new SqlCommand(@"SELECT COUNT(*) FROM tblStaff WHERE UserName = @username", con);
                 cmd.Parameters.AddWithValue("@username", username);
 
@@ -192,10 +194,11 @@ namespace BayViewHotel.Login
         private void LogLogin(string username, bool loginSuccess)
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            con.Open();
 
             try
             {
+                con.Open();
+
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO LoginLog (UserName, LoginSuccess) VALUES (@username,@loginsuccess)", con);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@loginsuccess", loginSuccess);
