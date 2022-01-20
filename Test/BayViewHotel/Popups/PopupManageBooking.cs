@@ -11,83 +11,177 @@ using System.Windows.Forms;
 
 namespace BayViewHotel.Popups
 {
-    public partial class AddBooking : Form
+    public partial class PopupManageBooking : Form
     {
-        string _startDate;
-        string _endDate;
-
         public int _selectedCustomerId;
+        string _bookingId;
+
         int _totalCost = 0;
 
-        public AddBooking(string StartDate, string EndDate)
+        bool fillingData = true;
+
+        public PopupManageBooking(string bookingId)
         {
             InitializeComponent();
-            _startDate = StartDate;
-            _endDate = EndDate;
+            _bookingId = bookingId;
         }
 
-        private void AddBooking_Load(object sender, EventArgs e)
+        private void PopupManageBooking_Load(object sender, EventArgs e)
         {
-            if (_startDate == "" || _endDate == "")
-            {
-                dateStart.Value = Convert.ToDateTime(DateTime.Now.ToString());
-                dateEnd.Value = dateStart.Value.AddDays(1);
-            } else
-            {
-                dateStart.Value = Convert.ToDateTime(_startDate);
-                dateEnd.Value = Convert.ToDateTime(_endDate);
-            }
+            SetBookingData(Convert.ToInt32(_bookingId));
+            comboRoomNo.Enabled = false;
+            fillingData = false;
+            CalculateTotalCost();
+        }
 
-            GrabComboBoxData();
+        private void SetBookingData(int bookingId)
+        {
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(@"SELECT * FROM tblBooking WHERE BookingID = @bookingid", con);
+                cmd.Parameters.AddWithValue("@bookingid", bookingId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    FillRoomNoData();
+
+                    while (reader.Read())
+                    {
+                        string roomType = GetRoomType(GetRoomID(GetRoomNo(Convert.ToInt32(reader["RoomID"]))));
+                        string roomNo = GetRoomNo(Convert.ToInt32(reader["RoomID"])).ToString();
+
+                        dateStart.Value = Convert.ToDateTime(reader["CheckInDate"]);
+                        dateEnd.Value = Convert.ToDateTime(reader["CheckOutDate"]);
+                        chkDisability.Checked = Convert.ToBoolean(reader["Breakfast"]);
+                        comboRoomType.SelectedIndex = comboRoomType.FindStringExact(roomType);
+                        comboRoomNo.SelectedIndex = comboRoomNo.FindStringExact(roomNo);
+                        numAdults.Value = Convert.ToInt32(reader["NoOfAdult"]);
+                        numChildren.Value = Convert.ToInt32(reader["NoOfChildren"]);
+                        chkBreakfast.Checked = Convert.ToBoolean(reader["Breakfast"]);
+
+                        if (numChildren.Value > 0)
+                        {
+                            numChildren.Enabled = true;
+                        }
+
+                        SetCustomerSelectionLabel(Convert.ToInt32(reader["CustomerID"]));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Failed to grab booking data.", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void FillRoomNoData()
+        {
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(@"SELECT RoomNo FROM tblRoom", con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        comboRoomNo.Items.Add(reader["RoomNo"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Failed to grab room number data.", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
 
         private void chkDisability_CheckedChanged(object sender, EventArgs e)
         {
-            lblChooseRoomInfo.Visible = true;
-            ResetOccupancyCounters();
-            GrabComboBoxData();
+            if (!fillingData)
+            {
+                comboRoomNo.Enabled = true;
+                lblChooseRoomInfo.Visible = true;
+                ResetOccupancyCounters();
+                GrabComboBoxData();
+            }
         }
 
         private void comboRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblChooseRoomInfo.Visible = true;
-            ResetOccupancyCounters();
-            GrabComboBoxData();
+            if (!fillingData)
+            {
+                comboRoomNo.Enabled = true;
+                lblChooseRoomInfo.Visible = true;
+                ResetOccupancyCounters();
+                GrabComboBoxData();
+            }
         }
 
         private void comboRoomNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblChooseRoomInfo.Visible = false;
-            lblPersonsError.Visible = false;
-            ResetOccupancyCounters();
-            CalculateTotalCost();
+            if (!fillingData)
+            {
+                lblChooseRoomInfo.Visible = false;
+                lblPersonsError.Visible = false;
+                ResetOccupancyCounters();
+                CalculateTotalCost();
+            }
         }
 
         private void numAdults_ValueChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboRoomType.Text) || comboRoomType.SelectedIndex == -1 || string.IsNullOrEmpty(comboRoomNo.Text) || comboRoomNo.SelectedIndex == -1)
+            if (!fillingData)
             {
-                ResetOccupancyCounters();
+                if (string.IsNullOrEmpty(comboRoomType.Text) || comboRoomType.SelectedIndex == -1 || string.IsNullOrEmpty(comboRoomNo.Text) || comboRoomNo.SelectedIndex == -1)
+                {
+                    ResetOccupancyCounters();
 
-                lblPersonsError.Visible = true;
-            } else
+                    lblPersonsError.Visible = true;
+                }
+                else
+                {
+                    ValidateInputs();
+                    CalculateTotalCost();
+                }
+            }
+        }
+
+        private void numChildren_ValueChanged(object sender, EventArgs e)
+        {
+            if (!fillingData)
             {
                 ValidateInputs();
                 CalculateTotalCost();
             }
         }
 
-        private void numChildren_ValueChanged(object sender, EventArgs e)
-        {
-            ValidateInputs();
-            CalculateTotalCost();
-        }
-
         private void chkBreakfast_CheckedChanged(object sender, EventArgs e)
         {
-            CalculateTotalCost();
+            if (!fillingData)
+            {
+                CalculateTotalCost();
+            }
         }
-        
+
         private void ResetOccupancyCounters()
         {
             numAdults.Value = 0;
@@ -158,28 +252,13 @@ namespace BayViewHotel.Popups
                     if (numAdults.Value >= numChildren.Value)
                     {
                         numAdults.Value -= 1;
-                    }
-                    else
+                    } else
                     {
                         numChildren.Value -= 1;
                     }
                     MessageBox.Show("Family rooms have a maximum occupancy of 4 Adults or Children, with at least 1 accompanying Adult.", "Error");
                 }
             }
-
-            //if (comboRoomType.Text == "Family")
-            //{
-            //    if (numChildren.Value > 3)
-            //    {
-            //        numChildren.Value = 3;
-            //        MessageBox.Show("Family rooms have a maximum occupancy of 3 Children and accompanied by 1 Adult.", "Error");
-            //        if (numAdults.Value > 1)
-            //        {
-            //            numAdults.Value = 1;
-            //            MessageBox.Show("Family rooms have a maximum occupancy of 3 Children and accompanied by 1 Adult.", "Error");
-            //        }
-            //    }
-            //}
         }
 
         private void GrabComboBoxData()
@@ -218,13 +297,14 @@ namespace BayViewHotel.Popups
 
         private void CalculateTotalCost()
         {
-            if ((string.IsNullOrEmpty(comboRoomType.Text) || comboRoomType.SelectedIndex == -1) 
+            if ((string.IsNullOrEmpty(comboRoomType.Text) || comboRoomType.SelectedIndex == -1)
                 || (string.IsNullOrEmpty(comboRoomNo.Text) || comboRoomNo.SelectedIndex == -1)
                 || (numAdults.Value + numChildren.Value < 1))
             {
                 lblTotalCost.Text = "£0.00";
-                
-            } else
+
+            }
+            else
             {
                 try
                 {
@@ -270,12 +350,6 @@ namespace BayViewHotel.Popups
             }
         }
 
-        private void lblSelectedCustomer_Click(object sender, EventArgs e)
-        {
-            PopupCustomerSelector form = new PopupCustomerSelector(this);
-            form.ShowDialog();
-        }
-
         public void SetCustomerSelectionLabel(int customerId)
         {
             lblSelectedCustomer.Text = GetCustNameFromCustomerId(customerId);
@@ -318,28 +392,34 @@ namespace BayViewHotel.Popups
 
         private void dateStart_ValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(dateStart.Value.ToString()) <= Convert.ToDateTime(DateTime.Now.ToString()))
-                dateStart.Value = DateTime.Now;
+            if (!fillingData)
+            {
+                if (Convert.ToDateTime(dateStart.Value.ToString()) <= Convert.ToDateTime(DateTime.Now.ToString()))
+                    dateStart.Value = DateTime.Now;
 
-            if (Convert.ToDateTime(dateStart.Value.ToString()) >= Convert.ToDateTime(dateEnd.Value.ToString()))
-                dateEnd.Value = dateStart.Value.AddDays(1);
+                if (Convert.ToDateTime(dateStart.Value.ToString()) >= Convert.ToDateTime(dateEnd.Value.ToString()))
+                    dateEnd.Value = dateStart.Value.AddDays(1);
 
-            chkDisability_CheckedChanged(null, null);
+                chkDisability_CheckedChanged(null, null);
 
-            CalculateTotalCost();
+                CalculateTotalCost();
+            }    
         }
 
         private void dateEnd_ValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(dateEnd.Value.ToString()) <= Convert.ToDateTime(DateTime.Now.ToString()))
-                dateEnd.Value = DateTime.Now.AddDays(1);
+            if (!fillingData)
+            {
+                if (Convert.ToDateTime(dateEnd.Value.ToString()) <= Convert.ToDateTime(DateTime.Now.ToString()))
+                    dateEnd.Value = DateTime.Now.AddDays(1);
 
-            if (Convert.ToDateTime(dateEnd.Value.ToString()) <= Convert.ToDateTime(dateStart.Value.ToString()))
-                dateStart.Value = dateEnd.Value.AddDays(-1);
+                if (Convert.ToDateTime(dateEnd.Value.ToString()) <= Convert.ToDateTime(dateStart.Value.ToString()))
+                    dateStart.Value = dateEnd.Value.AddDays(-1);
 
-            chkDisability_CheckedChanged(null, null);
-            
-            CalculateTotalCost();
+                chkDisability_CheckedChanged(null, null);
+
+                CalculateTotalCost();
+            }
         }
 
         private void btnBookingCancel_Click(object sender, EventArgs e)
@@ -358,8 +438,9 @@ namespace BayViewHotel.Popups
                 try
                 {
                     int roomId = GetRoomID(Convert.ToInt32(comboRoomNo.Text));
-                    int customerId = _selectedCustomerId;
-                    int staffId = Properties.Settings.Default.StaffID;
+                    //int customerId = _selectedCustomerId;
+                    //int staffId = Properties.Settings.Default.StaffID;
+                    int bookingId = Convert.ToInt32(_bookingId);
                     bool breakfast = chkBreakfast.Checked;
                     int adults = Convert.ToInt32(numAdults.Value);
                     int children = Convert.ToInt32(numChildren.Value);
@@ -367,56 +448,57 @@ namespace BayViewHotel.Popups
                     string dateEndString = dateEnd.Value.ToString();
                     //string status = "Active";
 
-                    if (roomId != 0 && customerId != 0 && staffId != 0)
+                    if (roomId != 0)
                     {
                         try
                         {
                             con.Open();
 
-                            SqlCommand cmd = new SqlCommand(@"INSERT INTO tblBooking (RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate, CheckOutDate, Status) VALUES (@roomid, @customerid, @staffid, @breakfast, @adults, @children, @checkindate, @checkoutdate, @status)", con);
+                            SqlCommand cmd = new SqlCommand(@"UPDATE tblBooking SET RoomID = @roomid, Breakfast = @breakfast, NoOfAdult = @adults, NoOfChildren = @children, CheckInDate = @checkindate, CheckOutDate = @checkoutdate WHERE BookingID = @bookingid", con);
 
                             cmd.Parameters.AddWithValue("@roomid", roomId);
-                            cmd.Parameters.AddWithValue("@customerid", customerId);
-                            cmd.Parameters.AddWithValue("@staffid", staffId);
+                            //cmd.Parameters.AddWithValue("@customerid", customerId);
+                            //cmd.Parameters.AddWithValue("@staffid", staffId);
                             cmd.Parameters.AddWithValue("@breakfast", breakfast);
                             cmd.Parameters.AddWithValue("@adults", adults);
                             cmd.Parameters.AddWithValue("@children", children);
                             cmd.Parameters.AddWithValue("@checkindate", Convert.ToDateTime(dateStartString));
                             cmd.Parameters.AddWithValue("@checkoutdate", Convert.ToDateTime(dateEndString));
-                            cmd.Parameters.AddWithValue("@status", "Active");
+                            cmd.Parameters.AddWithValue("@bookingid", _bookingId);
+                            //cmd.Parameters.AddWithValue("@status", "Active");
 
                             cmd.ExecuteScalar();
 
-                            GenerateInvoice(customerId);
+                            UpdateInvoice(bookingId);
 
                             con.Close();
-                            this.Close();
                         }
                         catch (Exception ex)
                         {
                             con.Close();
                             MessageBox.Show(ex.Message);
                         }
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show("Please select a customer before proceeding.", "Error");
                     }
-                } catch (Exception exc)
+                }
+                catch (Exception exc)
                 {
                     MessageBox.Show(exc.Message, "Error");
                 }
-                
-            } else
+
+            }
+            else
             {
                 MessageBox.Show("You must complete all required fields before proceeding.", "Error");
             }
         }
 
-        private void GenerateInvoice(int customerId)
+        private void UpdateInvoice(int bookingId)
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-
-            int bookingId = GetBookingID(customerId);
 
             if (bookingId != 0)
             {
@@ -424,11 +506,10 @@ namespace BayViewHotel.Popups
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO tblInvoice (BookingID, CustomerID, TotalCost) VALUES (@bookingid, @customerid, @totalcost)", con);
+                    SqlCommand cmd = new SqlCommand(@"UPDATE tblInvoice SET TotalCost = @totalcost WHERE InvoiceID = @invoiceid", con);
 
-                    cmd.Parameters.AddWithValue("@bookingid", bookingId);
-                    cmd.Parameters.AddWithValue("@customerid", customerId);
                     cmd.Parameters.AddWithValue("@totalcost", _totalCost);
+                    cmd.Parameters.AddWithValue("@invoiceid", GetInvoiceID(bookingId));
 
                     cmd.ExecuteScalar();
 
@@ -440,10 +521,49 @@ namespace BayViewHotel.Popups
                     con.Close();
                     MessageBox.Show(ex.Message);
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Failed while trying to generate invoice.", "Error");
             }
+        }
+
+        private int GetInvoiceID(int bookingId)
+        {
+            int result = 0;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT i.InvoiceID FROM tblInvoice i INNER JOIN tblBooking b ON b.BookingID = i.BookingID WHERE i.BookingID = @bookingid", con);
+                    cmd.Parameters.AddWithValue("@bookingid", bookingId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = Convert.ToInt32(reader["InvoiceID"]);
+                        }
+                    }
+                    else
+                    {
+                        result = 0;
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            return result;
         }
 
         private int GetBookingID(int customerId)
@@ -467,7 +587,8 @@ namespace BayViewHotel.Popups
                         {
                             result = Convert.ToInt32(reader["BookingID"]);
                         }
-                    } else
+                    }
+                    else
                     {
                         result = 0;
                     }
@@ -515,6 +636,112 @@ namespace BayViewHotel.Popups
             }
 
             return result;
+        }
+
+        private int GetRoomNo(int roomId)
+        {
+            int result = 0;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT RoomNo FROM tblRoom WHERE RoomID = @roomid", con);
+                    cmd.Parameters.AddWithValue("@roomid", roomId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = Convert.ToInt32(reader["RoomNo"]);
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            return result;
+        }
+
+        private string GetRoomType(int roomId)
+        {
+            string result = "";
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT RoomType FROM tblRoom WHERE RoomID = @roomid", con);
+                    cmd.Parameters.AddWithValue("@roomid", roomId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = reader["RoomType"].ToString();
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            return result;
+        }
+
+        private void cancelBookingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int bookingId = Convert.ToInt32(_bookingId);
+
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel this booking?" + Environment.NewLine + Environment.NewLine + "This action is irreversible.", "Continue?", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
+
+                if (bookingId != 0)
+                {
+                    try
+                    {
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand(@"UPDATE tblBooking SET Status = 'Cancelled' WHERE BookingID = @bookingid", con);
+
+                        cmd.Parameters.AddWithValue("@bookingid", bookingId);
+
+                        cmd.ExecuteScalar();
+
+                        con.Close();
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        con.Close();
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Failed while trying to set booking to cancelled.", "Error");
+                }
+            }
         }
     }
 }

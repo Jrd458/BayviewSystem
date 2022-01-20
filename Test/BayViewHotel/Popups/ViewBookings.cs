@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,10 +28,50 @@ namespace BayViewHotel.Popups
         {
             if (e.ColumnIndex == dataGridView1.Columns["BtnClmManageBooking"].Index && e.RowIndex >= 0)
             {
-                //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                ManageBooking formManageBooking = new ManageBooking(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                formManageBooking.ShowDialog();
+                if (IsCancelledBooking(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()))
+                {
+                    MessageBox.Show("Failed to load booking: This booking has been cancelled.", "Error");
+                } else
+                {
+                    PopupManageBooking formManageBooking = new PopupManageBooking(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    formManageBooking.ShowDialog();
+                }
             }
+        }
+
+        private bool IsCancelledBooking(string bookingId)
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT Status FROM tblBooking WHERE BookingID = @bookingid", con);
+                    cmd.Parameters.AddWithValue("@bookingid", bookingId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader["Status"].ToString() == "Cancelled")
+                                result = true;
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            return result;
         }
     }
 }
