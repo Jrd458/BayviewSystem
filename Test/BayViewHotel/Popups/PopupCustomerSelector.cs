@@ -1,5 +1,4 @@
-﻿using BayViewHotel.Popups;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,16 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BayViewHotel.Forms
+namespace BayViewHotel.Popups
 {
-    public partial class Customers : Form
+    public partial class PopupCustomerSelector : Form
     {
-        public Customers()
+        private AddBooking _master;
+
+        public PopupCustomerSelector(AddBooking master)
         {
             InitializeComponent();
+            _master = master;
         }
 
-        private void Customers_Load(object sender, EventArgs e)
+        private void PopupCustomerSelector_Load(object sender, EventArgs e)
         {
             RetrieveCustomerList();
             this.ActiveControl = txtSearchCustomer;
@@ -76,16 +78,17 @@ namespace BayViewHotel.Forms
 
                     con.Close();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
             }
-            
+
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            PopupAddCustomer form = new PopupAddCustomer(this, null);
+            PopupAddCustomer form = new PopupAddCustomer(null, this);
             form.ShowDialog();
         }
 
@@ -94,8 +97,9 @@ namespace BayViewHotel.Forms
             DataGridViewRow selectedRow = dataGridCustomer.Rows[e.RowIndex];
             string customerId = Convert.ToString(selectedRow.Cells["CustomerID"].Value);
 
-            PopupEditCustomer editForm = new PopupEditCustomer(this, customerId);
-            editForm.ShowDialog();
+            _master._selectedCustomerId = Convert.ToInt32(customerId);
+            _master.SetCustomerSelectionLabel(Convert.ToInt32(customerId));
+            this.Close();
         }
     }
 }

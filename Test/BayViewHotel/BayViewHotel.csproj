@@ -170,6 +170,12 @@
     <Compile Include="Popups\PopupAddCustomer.Designer.cs">
       <DependentUpon>PopupAddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popups\PopupCustomerSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\PopupCustomerSelector.Designer.cs">
+      <DependentUpon>PopupCustomerSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popups\PopupEditCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\PopupAddCustomer.resx">
       <DependentUpon>PopupAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\PopupCustomerSelector.resx">
+      <DependentUpon>PopupCustomerSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\PopupEditCustomer.resx">
       <DependentUpon>PopupEditCustomer.cs</DependentUpon>

@@ -158,6 +158,7 @@ namespace BayViewHotel.Login
                     if (count > 0)
                     {
                         LogLogin(userName, true);
+                        Properties.Settings.Default.StaffID = GetStaffID(userName);
                         Main mainForm = new Main();
                         mainForm.Show();
                         this.Hide();
@@ -190,6 +191,40 @@ namespace BayViewHotel.Login
             txtPassword.Enabled = true;
             btnLogin.Enabled = true;
             btnClose.Enabled = true;
+        }
+
+        private int GetStaffID(string username)
+        {
+            int result = 0;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT StaffID FROM tblStaff WHERE UserName = @username", con);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = Convert.ToInt32(reader["StaffID"]);
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            return result;
         }
 
         private void LogLogin(string username, bool loginSuccess)

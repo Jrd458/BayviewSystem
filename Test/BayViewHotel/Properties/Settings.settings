@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=51.195.252.182,443;Initial Catalog=BayViewHotel;Persist Security Info=True;User ID=sa;Password=Cambrian@1</Value>
     </Setting>
+    <Setting Name="StaffID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

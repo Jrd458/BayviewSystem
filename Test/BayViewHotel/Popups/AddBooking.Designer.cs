@@ -54,6 +54,9 @@ namespace BayViewHotel.Popups
             this.lblBookedUnder = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSelectedCustomer = new System.Windows.Forms.Label();
+            this.lblCostTitle = new System.Windows.Forms.Label();
+            this.lblTotalCost = new System.Windows.Forms.Label();
+            this.lblPersonsError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numChildren)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAdults)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +68,7 @@ namespace BayViewHotel.Popups
             this.btnBookingCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBookingCancel.FlatAppearance.BorderSize = 0;
             this.btnBookingCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookingCancel.Location = new System.Drawing.Point(625, 260);
+            this.btnBookingCancel.Location = new System.Drawing.Point(631, 327);
             this.btnBookingCancel.Name = "btnBookingCancel";
             this.btnBookingCancel.Size = new System.Drawing.Size(40, 40);
             this.btnBookingCancel.TabIndex = 57;
@@ -79,7 +82,7 @@ namespace BayViewHotel.Popups
             this.btnBookingSubmit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBookingSubmit.FlatAppearance.BorderSize = 0;
             this.btnBookingSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookingSubmit.Location = new System.Drawing.Point(564, 260);
+            this.btnBookingSubmit.Location = new System.Drawing.Point(570, 327);
             this.btnBookingSubmit.Name = "btnBookingSubmit";
             this.btnBookingSubmit.Size = new System.Drawing.Size(40, 40);
             this.btnBookingSubmit.TabIndex = 56;
@@ -116,6 +119,7 @@ namespace BayViewHotel.Popups
             this.chkDisability.TabIndex = 53;
             this.chkDisability.Text = "Required";
             this.chkDisability.UseVisualStyleBackColor = true;
+            this.chkDisability.CheckedChanged += new System.EventHandler(this.chkDisability_CheckedChanged);
             // 
             // label9
             // 
@@ -136,19 +140,17 @@ namespace BayViewHotel.Popups
             this.chkBreakfast.TabIndex = 51;
             this.chkBreakfast.Text = "Opted In";
             this.chkBreakfast.UseVisualStyleBackColor = true;
+            this.chkBreakfast.CheckedChanged += new System.EventHandler(this.chkBreakfast_CheckedChanged);
             // 
             // comboRoomNo
             // 
             this.comboRoomNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboRoomNo.FormattingEnabled = true;
-            this.comboRoomNo.Items.AddRange(new object[] {
-            "Single",
-            "Double",
-            "Family"});
             this.comboRoomNo.Location = new System.Drawing.Point(344, 182);
             this.comboRoomNo.Name = "comboRoomNo";
             this.comboRoomNo.Size = new System.Drawing.Size(69, 25);
             this.comboRoomNo.TabIndex = 50;
+            this.comboRoomNo.SelectedIndexChanged += new System.EventHandler(this.comboRoomNo_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -156,9 +158,9 @@ namespace BayViewHotel.Popups
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(340, 159);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 21);
+            this.label8.Size = new System.Drawing.Size(52, 21);
             this.label8.TabIndex = 49;
-            this.label8.Text = "Room Booked";
+            this.label8.Text = "Room";
             // 
             // comboRoomType
             // 
@@ -172,6 +174,7 @@ namespace BayViewHotel.Popups
             this.comboRoomType.Name = "comboRoomType";
             this.comboRoomType.Size = new System.Drawing.Size(135, 25);
             this.comboRoomType.TabIndex = 48;
+            this.comboRoomType.SelectedIndexChanged += new System.EventHandler(this.comboRoomType_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -185,11 +188,13 @@ namespace BayViewHotel.Popups
             // 
             // numChildren
             // 
+            this.numChildren.Enabled = false;
             this.numChildren.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numChildren.Location = new System.Drawing.Point(95, 265);
             this.numChildren.Name = "numChildren";
             this.numChildren.Size = new System.Drawing.Size(41, 25);
             this.numChildren.TabIndex = 46;
+            this.numChildren.ValueChanged += new System.EventHandler(this.numChildren_ValueChanged);
             // 
             // label2
             // 
@@ -208,6 +213,7 @@ namespace BayViewHotel.Popups
             this.numAdults.Name = "numAdults";
             this.numAdults.Size = new System.Drawing.Size(41, 25);
             this.numAdults.TabIndex = 44;
+            this.numAdults.ValueChanged += new System.EventHandler(this.numAdults_ValueChanged);
             // 
             // label5
             // 
@@ -318,6 +324,7 @@ namespace BayViewHotel.Popups
             // lblSelectedCustomer
             // 
             this.lblSelectedCustomer.AutoSize = true;
+            this.lblSelectedCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSelectedCustomer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectedCustomer.ForeColor = System.Drawing.Color.Blue;
             this.lblSelectedCustomer.Location = new System.Drawing.Point(111, 43);
@@ -327,11 +334,45 @@ namespace BayViewHotel.Popups
             this.lblSelectedCustomer.Text = "No Customer Selected";
             this.lblSelectedCustomer.Click += new System.EventHandler(this.lblSelectedCustomer_Click);
             // 
+            // lblCostTitle
+            // 
+            this.lblCostTitle.AutoSize = true;
+            this.lblCostTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCostTitle.Location = new System.Drawing.Point(24, 313);
+            this.lblCostTitle.Name = "lblCostTitle";
+            this.lblCostTitle.Size = new System.Drawing.Size(77, 21);
+            this.lblCostTitle.TabIndex = 59;
+            this.lblCostTitle.Text = "Total Cost";
+            // 
+            // lblTotalCost
+            // 
+            this.lblTotalCost.AutoSize = true;
+            this.lblTotalCost.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCost.Location = new System.Drawing.Point(24, 333);
+            this.lblTotalCost.Name = "lblTotalCost";
+            this.lblTotalCost.Size = new System.Drawing.Size(37, 30);
+            this.lblTotalCost.TabIndex = 60;
+            this.lblTotalCost.Text = "£0";
+            // 
+            // lblPersonsError
+            // 
+            this.lblPersonsError.AutoSize = true;
+            this.lblPersonsError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblPersonsError.Location = new System.Drawing.Point(25, 228);
+            this.lblPersonsError.Name = "lblPersonsError";
+            this.lblPersonsError.Size = new System.Drawing.Size(139, 13);
+            this.lblPersonsError.TabIndex = 61;
+            this.lblPersonsError.Text = "You must select a room first.";
+            this.lblPersonsError.Visible = false;
+            // 
             // AddBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 312);
+            this.ClientSize = new System.Drawing.Size(685, 380);
+            this.Controls.Add(this.lblPersonsError);
+            this.Controls.Add(this.lblTotalCost);
+            this.Controls.Add(this.lblCostTitle);
             this.Controls.Add(this.lblSelectedCustomer);
             this.Controls.Add(this.btnBookingCancel);
             this.Controls.Add(this.btnBookingSubmit);
@@ -399,5 +440,8 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Label lblBookedUnder;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSelectedCustomer;
+        private System.Windows.Forms.Label lblCostTitle;
+        private System.Windows.Forms.Label lblTotalCost;
+        private System.Windows.Forms.Label lblPersonsError;
     }
 }

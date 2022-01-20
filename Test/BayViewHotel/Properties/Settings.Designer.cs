@@ -33,5 +33,17 @@ namespace BayViewHotel.Properties {
                 return ((string)(this["ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int StaffID {
+            get {
+                return ((int)(this["StaffID"]));
+            }
+            set {
+                this["StaffID"] = value;
+            }
+        }
     }
 }

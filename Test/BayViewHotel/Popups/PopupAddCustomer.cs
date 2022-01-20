@@ -15,11 +15,13 @@ namespace BayViewHotel.Popups
     public partial class PopupAddCustomer : Form
     {
         private Customers _master;
+        private PopupCustomerSelector _master2;
 
-        public PopupAddCustomer(Customers master)
+        public PopupAddCustomer(Customers master, PopupCustomerSelector master2)
         {
             InitializeComponent();
             _master = master;
+            _master2 = master2;
         }
 
         private void btnCustomerCancel_Click(object sender, EventArgs e)
@@ -59,7 +61,17 @@ namespace BayViewHotel.Popups
                     cmd.ExecuteScalar();
 
                     con.Close();
-                    _master.RetrieveCustomerList();
+
+                    if (_master != null)
+                    {
+                        _master.RetrieveCustomerList();
+                    } 
+
+                    if (_master2 != null)
+                    {
+                        _master2.RetrieveCustomerList();
+                    }
+
                     this.Close();
                 }
                 catch (Exception ex)
