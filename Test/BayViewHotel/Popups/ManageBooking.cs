@@ -118,11 +118,10 @@ namespace BayViewHotel.Popups
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand(@"UPDATE tblBooking SET RoomID = @roomid, CustomerID = @customerid, StaffID = @staffid, Breakfast = @breakfast, NoOfAdult = @adults, NoOfChildren = @children, CheckInDate = @checkindate, CheckOutDate = @checkoutdate, Status = @status WHERE BookingID = @bookingref", con);
+                SqlCommand cmd = new SqlCommand(@"UPDATE tblBooking SET RoomID = @roomid, CustomerID = @customerid, Breakfast = @breakfast, NoOfAdult = @adults, NoOfChildren = @children, CheckInDate = @checkindate, CheckOutDate = @checkoutdate, Status = @status WHERE BookingID = @bookingref", con);
 
                 //cmd.Parameters.AddWithValue("@roomid", _customerId);
                 //cmd.Parameters.AddWithValue("@customerid", _customerId);
-                //cmd.Parameters.AddWithValue("@staffid", _customerId);
                 //cmd.Parameters.AddWithValue("@breakfast", _customerId);
                 //cmd.Parameters.AddWithValue("@adults", _customerId);
                 //cmd.Parameters.AddWithValue("@children", _customerId);

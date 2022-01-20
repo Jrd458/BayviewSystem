@@ -325,50 +325,68 @@ namespace BayViewHotel.Popups
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
 
-            int roomId = GetRoomID(Convert.ToInt32(comboRoomNo.Text));
-            int customerId = _selectedCustomerId;
-            int staffId = Properties.Settings.Default.StaffID;
-            bool breakfast = chkBreakfast.Checked;
-            int adults = Convert.ToInt32(numAdults.Value);
-            int children = Convert.ToInt32(numAdults.Value);
-            string dateStartString = dateStart.Value.ToString();
-            string dateEndString = dateEnd.Value.ToString();
-            //string status = "Active";
-
-            if (roomId != 0 || _selectedCustomerId != 0 || staffId != 0)
+            if ((!string.IsNullOrEmpty(comboRoomType.Text) && comboRoomType.SelectedIndex != -1)
+                && (!string.IsNullOrEmpty(comboRoomNo.Text) || comboRoomNo.SelectedIndex != -1)
+                && !(numAdults.Value + numChildren.Value < 1))
             {
                 try
                 {
-                    con.Open();
+                    int roomId = GetRoomID(Convert.ToInt32(comboRoomNo.Text));
+                    int customerId = _selectedCustomerId;
+                    int staffId = Properties.Settings.Default.StaffID;
+                    bool breakfast = chkBreakfast.Checked;
+                    int adults = Convert.ToInt32(numAdults.Value);
+                    int children = Convert.ToInt32(numChildren.Value);
+                    string dateStartString = dateStart.Value.ToString();
+                    string dateEndString = dateEnd.Value.ToString();
 
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO tblBooking (RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate, CheckOutDate, Status) VALUES (@roomid, @customerid, @staffid, @breakfast, @adults, @children, @checkindate, @checkoutdate, @status)", con);
+                    //string status = "Active";
 
-                    cmd.Parameters.AddWithValue("@roomid", roomId);
-                    cmd.Parameters.AddWithValue("@customerid", customerId);
-                    cmd.Parameters.AddWithValue("@staffid", staffId);
-                    cmd.Parameters.AddWithValue("@breakfast", breakfast);
-                    cmd.Parameters.AddWithValue("@adults", adults);
-                    cmd.Parameters.AddWithValue("@children", children);
-                    cmd.Parameters.AddWithValue("@checkindate", Convert.ToDateTime(dateStartString));
-                    cmd.Parameters.AddWithValue("@checkoutdate", Convert.ToDateTime(dateEndString));
-                    cmd.Parameters.AddWithValue("@status", "Active");
+                    //MessageBox.Show(roomId.ToString() + Environment.NewLine + customerId.ToString() + Environment.NewLine + staffId.ToString() + Environment.NewLine + lblSelectedCustomer.Text);
 
-                    cmd.ExecuteScalar();
-                    //MessageBox.Show("For testing purposes only data has not been saved. Closing", "Testing");
+                    if (roomId != 0 && customerId != 0 && staffId != 0)
+                    {
+                        try
+                        {
+                            con.Open();
 
-                    GenerateInvoice(customerId);
+                            SqlCommand cmd = new SqlCommand(@"INSERT INTO tblBooking (RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate, CheckOutDate, Status) VALUES (@roomid, @customerid, @staffid, @breakfast, @adults, @children, @checkindate, @checkoutdate, @status)", con);
 
-                    con.Close();
-                    this.Close();
-                }
-                catch (Exception ex)
+                            cmd.Parameters.AddWithValue("@roomid", roomId);
+                            cmd.Parameters.AddWithValue("@customerid", customerId);
+                            cmd.Parameters.AddWithValue("@staffid", staffId);
+                            cmd.Parameters.AddWithValue("@breakfast", breakfast);
+                            cmd.Parameters.AddWithValue("@adults", adults);
+                            cmd.Parameters.AddWithValue("@children", children);
+                            cmd.Parameters.AddWithValue("@checkindate", Convert.ToDateTime(dateStartString));
+                            cmd.Parameters.AddWithValue("@checkoutdate", Convert.ToDateTime(dateEndString));
+                            cmd.Parameters.AddWithValue("@status", "Active");
+
+                            cmd.ExecuteScalar();
+                            //MessageBox.Show("For testing purposes only data has not been saved. Closing", "Testing");
+
+                            GenerateInvoice(customerId);
+
+                            con.Close();
+                            this.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            con.Close();
+                            MessageBox.Show(ex.Message);
+                        }
+                    } else
+                    {
+                        MessageBox.Show("Please select a customer before proceeding.", "Error");
+                    }
+                } catch (Exception exc)
                 {
-                    con.Close();
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(exc.Message, "Error");
                 }
+                
             } else
             {
-                MessageBox.Show("An error occurred trying to write to the database.", "Error");
+                MessageBox.Show("You must complete all required fields before proceeding.", "Error");
             }
         }
 
