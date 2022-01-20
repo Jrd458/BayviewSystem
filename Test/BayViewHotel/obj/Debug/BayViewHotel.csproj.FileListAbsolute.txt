@@ -134,3 +134,4 @@ C:\Users\17868823\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel
 C:\Users\17868823\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.csproj.CopyComplete
 C:\Users\17868823\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.exe
 C:\Users\17868823\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.pdb
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.Popups.AddBooking.resources

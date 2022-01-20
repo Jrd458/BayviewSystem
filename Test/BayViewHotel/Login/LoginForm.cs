@@ -165,6 +165,7 @@ namespace BayViewHotel.Login
                     {
                         LogLogin(userName, false);
                         lblError.Visible = true;
+                        this.ActiveControl = txtPassword;
                     }
 
                     con.Close();

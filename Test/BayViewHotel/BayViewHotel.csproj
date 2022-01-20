@@ -85,6 +85,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BayViewHotelDataSet.cs">
+      <DependentUpon>BayViewHotelDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BayViewHotelDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +145,12 @@
     </Compile>
     <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\AddBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\AddBooking.Designer.cs">
+      <DependentUpon>AddBooking.cs</DependentUpon>
     </Compile>
     <Compile Include="Popups\ManageBooking.cs">
       <SubType>Form</SubType>
@@ -208,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popups\AddBooking.resx">
+      <DependentUpon>AddBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\ManageBooking.resx">
       <DependentUpon>ManageBooking.cs</DependentUpon>

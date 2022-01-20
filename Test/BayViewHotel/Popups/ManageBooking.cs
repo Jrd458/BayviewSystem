@@ -112,7 +112,36 @@ namespace BayViewHotel.Popups
 
         private void btnBookingSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("this currently does nothing");
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(@"UPDATE tblBooking SET RoomID = @roomid, CustomerID = @customerid, StaffID = @staffid, Breakfast = @breakfast, NoOfAdult = @adults, NoOfChildren = @children, CheckInDate = @checkindate, CheckOutDate = @checkoutdate, Status = @status WHERE BookingID = @bookingref", con);
+
+                //cmd.Parameters.AddWithValue("@roomid", _customerId);
+                //cmd.Parameters.AddWithValue("@customerid", _customerId);
+                //cmd.Parameters.AddWithValue("@staffid", _customerId);
+                //cmd.Parameters.AddWithValue("@breakfast", _customerId);
+                //cmd.Parameters.AddWithValue("@adults", _customerId);
+                //cmd.Parameters.AddWithValue("@children", _customerId);
+                //cmd.Parameters.AddWithValue("@checkindate", _customerId);
+                //cmd.Parameters.AddWithValue("@checkoutdate", _customerId);
+                //cmd.Parameters.AddWithValue("@status", _customerId);
+                //cmd.Parameters.AddWithValue("@bookingref", _customerId);
+
+                cmd.ExecuteScalar();
+
+                con.Close();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                MessageBox.Show(ex.Message);
+            }
+
             this.Close();
         }
     }

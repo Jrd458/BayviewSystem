@@ -2328,6 +2328,8 @@ namespace BayViewHotel {
             
             private global::System.Data.DataColumn columnCreatedByStaff;
             
+            private global::System.Data.DataColumn columnStatus;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public CustomerBookingDataTable() {
@@ -2419,6 +2421,14 @@ namespace BayViewHotel {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2454,7 +2464,7 @@ namespace BayViewHotel {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerBookingRow AddCustomerBookingRow(int BookingReference, int CustomerNo, string FirstName, string LastName, System.DateTime CheckIn, System.DateTime CheckOut, string CreatedByStaff) {
+            public CustomerBookingRow AddCustomerBookingRow(int BookingReference, int CustomerNo, string FirstName, string LastName, System.DateTime CheckIn, System.DateTime CheckOut, string CreatedByStaff, string Status) {
                 CustomerBookingRow rowCustomerBookingRow = ((CustomerBookingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         BookingReference,
@@ -2463,7 +2473,8 @@ namespace BayViewHotel {
                         LastName,
                         CheckIn,
                         CheckOut,
-                        CreatedByStaff};
+                        CreatedByStaff,
+                        Status};
                 rowCustomerBookingRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomerBookingRow);
                 return rowCustomerBookingRow;
@@ -2500,6 +2511,7 @@ namespace BayViewHotel {
                 this.columnCheckIn = base.Columns["CheckIn"];
                 this.columnCheckOut = base.Columns["CheckOut"];
                 this.columnCreatedByStaff = base.Columns["CreatedByStaff"];
+                this.columnStatus = base.Columns["Status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2519,19 +2531,20 @@ namespace BayViewHotel {
                 base.Columns.Add(this.columnCheckOut);
                 this.columnCreatedByStaff = new global::System.Data.DataColumn("CreatedByStaff", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedByStaff);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBookingReference}, true));
                 this.columnBookingReference.AllowDBNull = false;
                 this.columnBookingReference.Unique = true;
                 this.columnCustomerNo.AllowDBNull = false;
-                this.columnFirstName.AllowDBNull = false;
                 this.columnFirstName.MaxLength = 32;
-                this.columnLastName.AllowDBNull = false;
                 this.columnLastName.MaxLength = 32;
                 this.columnCheckIn.AllowDBNull = false;
                 this.columnCheckOut.AllowDBNull = false;
                 this.columnCreatedByStaff.ReadOnly = true;
                 this.columnCreatedByStaff.MaxLength = 65;
+                this.columnStatus.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3445,7 +3458,12 @@ namespace BayViewHotel {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string FirstName {
                 get {
-                    return ((string)(this[this.tableCustomerBooking.FirstNameColumn]));
+                    try {
+                        return ((string)(this[this.tableCustomerBooking.FirstNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FirstName\' in table \'CustomerBooking\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCustomerBooking.FirstNameColumn] = value;
@@ -3456,7 +3474,12 @@ namespace BayViewHotel {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string LastName {
                 get {
-                    return ((string)(this[this.tableCustomerBooking.LastNameColumn]));
+                    try {
+                        return ((string)(this[this.tableCustomerBooking.LastNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LastName\' in table \'CustomerBooking\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCustomerBooking.LastNameColumn] = value;
@@ -3499,6 +3522,41 @@ namespace BayViewHotel {
                 set {
                     this[this.tableCustomerBooking.CreatedByStaffColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Status {
+                get {
+                    return ((string)(this[this.tableCustomerBooking.StatusColumn]));
+                }
+                set {
+                    this[this.tableCustomerBooking.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsFirstNameNull() {
+                return this.IsNull(this.tableCustomerBooking.FirstNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetFirstNameNull() {
+                this[this.tableCustomerBooking.FirstNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsLastNameNull() {
+                return this.IsNull(this.tableCustomerBooking.LastNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetLastNameNull() {
+                this[this.tableCustomerBooking.LastNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3848,48 +3906,44 @@ namespace BayViewHotel.BayViewHotelDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("CustomerID", "CustomerID");
             tableMapping.ColumnMappings.Add("StaffID", "StaffID");
             tableMapping.ColumnMappings.Add("Breakfast", "Breakfast");
-            tableMapping.ColumnMappings.Add("NoOfAdult", "NoOfAdult");
-            tableMapping.ColumnMappings.Add("NoOfChildren", "NoOfChildren");
+            tableMapping.ColumnMappings.Add("NoOfPeople", "NoOfPeople");
             tableMapping.ColumnMappings.Add("CheckInDate", "CheckInDate");
             tableMapping.ColumnMappings.Add("CheckOutDate", "CheckOutDate");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[tblBooking] WHERE (([BookingID] = @Original_BookingID) AND ([RoomID] = @Original_RoomID) AND ([CustomerID] = @Original_CustomerID) AND ([StaffID] = @Original_StaffID) AND ([Breakfast] = @Original_Breakfast) AND ([NoOfAdult] = @Original_NoOfAdult) AND ([NoOfChildren] = @Original_NoOfChildren) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[tblBooking] WHERE (([BookingID] = @Original_BookingID) AND ([RoomID] = @Original_RoomID) AND ([CustomerID] = @Original_CustomerID) AND ([StaffID] = @Original_StaffID) AND ([Breakfast] = @Original_Breakfast) AND ([NoOfPeople] = @Original_NoOfPeople) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StaffID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StaffID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Breakfast", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Breakfast", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfAdult", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfAdult", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfChildren", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfChildren", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfPeople", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfPeople", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckInDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckOutDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[tblBooking] ([RoomID], [CustomerID], [StaffID], [Breakfast], [NoOfAdult], [NoOfChildren], [CheckInDate], [CheckOutDate]) VALUES (@RoomID, @CustomerID, @StaffID, @Breakfast, @NoOfAdult, @NoOfChildren, @CheckInDate, @CheckOutDate);
-SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate, CheckOutDate FROM tblBooking WHERE (BookingID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[tblBooking] ([RoomID], [CustomerID], [StaffID], [Breakfast], [NoOfPeople], [CheckInDate], [CheckOutDate]) VALUES (@RoomID, @CustomerID, @StaffID, @Breakfast, @NoOfPeople, @CheckInDate, @CheckOutDate);
+SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfPeople, CheckInDate, CheckOutDate FROM tblBooking WHERE (BookingID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StaffID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StaffID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Breakfast", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Breakfast", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfAdult", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfAdult", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfChildren", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfChildren", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfPeople", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfPeople", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckInDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckOutDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tblBooking] SET [RoomID] = @RoomID, [CustomerID] = @CustomerID, [StaffID] = @StaffID, [Breakfast] = @Breakfast, [NoOfAdult] = @NoOfAdult, [NoOfChildren] = @NoOfChildren, [CheckInDate] = @CheckInDate, [CheckOutDate] = @CheckOutDate WHERE (([BookingID] = @Original_BookingID) AND ([RoomID] = @Original_RoomID) AND ([CustomerID] = @Original_CustomerID) AND ([StaffID] = @Original_StaffID) AND ([Breakfast] = @Original_Breakfast) AND ([NoOfAdult] = @Original_NoOfAdult) AND ([NoOfChildren] = @Original_NoOfChildren) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate));
-SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate, CheckOutDate FROM tblBooking WHERE (BookingID = @BookingID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tblBooking] SET [RoomID] = @RoomID, [CustomerID] = @CustomerID, [StaffID] = @StaffID, [Breakfast] = @Breakfast, [NoOfPeople] = @NoOfPeople, [CheckInDate] = @CheckInDate, [CheckOutDate] = @CheckOutDate WHERE (([BookingID] = @Original_BookingID) AND ([RoomID] = @Original_RoomID) AND ([CustomerID] = @Original_CustomerID) AND ([StaffID] = @Original_StaffID) AND ([Breakfast] = @Original_Breakfast) AND ([NoOfPeople] = @Original_NoOfPeople) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate));
+SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfPeople, CheckInDate, CheckOutDate FROM tblBooking WHERE (BookingID = @BookingID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StaffID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StaffID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Breakfast", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Breakfast", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfAdult", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfAdult", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfChildren", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfChildren", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfPeople", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfPeople", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckInDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckOutDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3897,8 +3951,7 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StaffID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StaffID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Breakfast", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Breakfast", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfAdult", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfAdult", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfChildren", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfChildren", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfPeople", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfPeople", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckInDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckOutDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookingID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "BookingID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3917,7 +3970,7 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate" +
+            this._commandCollection[0].CommandText = "SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfPeople, CheckInDate" +
                 ", CheckOutDate FROM dbo.tblBooking";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -3979,16 +4032,15 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_BookingID, int Original_RoomID, int Original_CustomerID, int Original_StaffID, bool Original_Breakfast, int Original_NoOfAdult, int Original_NoOfChildren, System.DateTime Original_CheckInDate, System.DateTime Original_CheckOutDate) {
+        public virtual int Delete(int Original_BookingID, int Original_RoomID, int Original_CustomerID, int Original_StaffID, bool Original_Breakfast, int Original_NoOfPeople, System.DateTime Original_CheckInDate, System.DateTime Original_CheckOutDate) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_BookingID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_RoomID));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_CustomerID));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_StaffID));
             this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Breakfast));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_NoOfAdult));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_NoOfChildren));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_CheckInDate));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_CheckOutDate));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_NoOfPeople));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_CheckInDate));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_CheckOutDate));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4009,15 +4061,14 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int RoomID, int CustomerID, int StaffID, bool Breakfast, int NoOfAdult, int NoOfChildren, System.DateTime CheckInDate, System.DateTime CheckOutDate) {
+        public virtual int Insert(int RoomID, int CustomerID, int StaffID, bool Breakfast, int NoOfPeople, System.DateTime CheckInDate, System.DateTime CheckOutDate) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(RoomID));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(CustomerID));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(StaffID));
             this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Breakfast));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(NoOfAdult));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(NoOfChildren));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(CheckInDate));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(CheckOutDate));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(NoOfPeople));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(CheckInDate));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(CheckOutDate));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4043,8 +4094,7 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
                     int CustomerID, 
                     int StaffID, 
                     bool Breakfast, 
-                    int NoOfAdult, 
-                    int NoOfChildren, 
+                    int NoOfPeople, 
                     System.DateTime CheckInDate, 
                     System.DateTime CheckOutDate, 
                     int Original_BookingID, 
@@ -4052,8 +4102,7 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
                     int Original_CustomerID, 
                     int Original_StaffID, 
                     bool Original_Breakfast, 
-                    int Original_NoOfAdult, 
-                    int Original_NoOfChildren, 
+                    int Original_NoOfPeople, 
                     System.DateTime Original_CheckInDate, 
                     System.DateTime Original_CheckOutDate, 
                     int BookingID) {
@@ -4061,20 +4110,18 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(CustomerID));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(StaffID));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Breakfast));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(NoOfAdult));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(NoOfChildren));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(CheckInDate));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(CheckOutDate));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_BookingID));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_RoomID));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_CustomerID));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_StaffID));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_Breakfast));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_NoOfAdult));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_NoOfChildren));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_CheckInDate));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_CheckOutDate));
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(BookingID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(NoOfPeople));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(CheckInDate));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(CheckOutDate));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_BookingID));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_RoomID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_CustomerID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_StaffID));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_Breakfast));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_NoOfPeople));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_CheckInDate));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_CheckOutDate));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(BookingID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4095,8 +4142,8 @@ SELECT BookingID, RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildre
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int RoomID, int CustomerID, int StaffID, bool Breakfast, int NoOfAdult, int NoOfChildren, System.DateTime CheckInDate, System.DateTime CheckOutDate, int Original_BookingID, int Original_RoomID, int Original_CustomerID, int Original_StaffID, bool Original_Breakfast, int Original_NoOfAdult, int Original_NoOfChildren, System.DateTime Original_CheckInDate, System.DateTime Original_CheckOutDate) {
-            return this.Update(RoomID, CustomerID, StaffID, Breakfast, NoOfAdult, NoOfChildren, CheckInDate, CheckOutDate, Original_BookingID, Original_RoomID, Original_CustomerID, Original_StaffID, Original_Breakfast, Original_NoOfAdult, Original_NoOfChildren, Original_CheckInDate, Original_CheckOutDate, Original_BookingID);
+        public virtual int Update(int RoomID, int CustomerID, int StaffID, bool Breakfast, int NoOfPeople, System.DateTime CheckInDate, System.DateTime CheckOutDate, int Original_BookingID, int Original_RoomID, int Original_CustomerID, int Original_StaffID, bool Original_Breakfast, int Original_NoOfPeople, System.DateTime Original_CheckInDate, System.DateTime Original_CheckOutDate) {
+            return this.Update(RoomID, CustomerID, StaffID, Breakfast, NoOfPeople, CheckInDate, CheckOutDate, Original_BookingID, Original_RoomID, Original_CustomerID, Original_StaffID, Original_Breakfast, Original_NoOfPeople, Original_CheckInDate, Original_CheckOutDate, Original_BookingID);
         }
     }
     
@@ -6307,6 +6354,7 @@ SELECT StaffID, ManagerID, UserName, FirstName, LastName, Password, Role, Addres
             tableMapping.ColumnMappings.Add("CheckIn", "CheckIn");
             tableMapping.ColumnMappings.Add("CheckOut", "CheckOut");
             tableMapping.ColumnMappings.Add("CreatedByStaff", "CreatedByStaff");
+            tableMapping.ColumnMappings.Add("Status", "Status");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6323,8 +6371,8 @@ SELECT StaffID, ManagerID, UserName, FirstName, LastName, Password, Role, Addres
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BookingReference, CustomerNo, FirstName, LastName, CheckIn, CheckOut, Crea" +
-                "tedByStaff FROM dbo.CustomerBooking";
+            this._commandCollection[0].CommandText = "SELECT BookingReference, CustomerNo, FirstName, LastName, Status, CheckIn, CheckO" +
+                "ut, CreatedByStaff FROM dbo.CustomerBooking";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

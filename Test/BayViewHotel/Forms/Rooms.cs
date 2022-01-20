@@ -61,8 +61,9 @@ namespace BayViewHotel.Forms
                 SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("RetrieveAvailableRoomsByDateRange", con);
+                SqlCommand cmd = new SqlCommand("RetrieveRoomAvailabilityStatus", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.Add(new SqlParameter("@StartDate", DateTime.Now)); // testing
                 cmd.Parameters.Add(new SqlParameter("@EndDate", DateTime.Now)); // testing
 
@@ -125,6 +126,9 @@ namespace BayViewHotel.Forms
                     dtFamily.Columns.Add(typeFamily[i], typeof(string));
                 }
 
+                Color disabilityColor = Color.FromArgb(57, 119, 219);
+                Color unavailableColor = Color.FromArgb(247, 97, 87);
+
                 string[] columnNameSingle = dtSingle.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
                 for (int i = 0; i < columnNameSingle.Length; i++)
                 {
@@ -140,13 +144,17 @@ namespace BayViewHotel.Forms
                     foreach (string x in disabledRooms)
                     {
                         if (x == columnNameSingle[i])
-                            btn.BackColor = System.Drawing.Color.LightBlue;
+                            btn.BackColor = disabilityColor;
                     }
 
                     foreach (string x in unavailableRooms)
                     {
                         if (x == columnNameSingle[i])
-                            btn.Enabled = false;
+                        {
+                            btn.FlatStyle = FlatStyle.Flat;
+                            btn.FlatAppearance.BorderColor = unavailableColor;
+                            btn.FlatAppearance.BorderSize = 3;
+                        }
                     }
 
                     btn.Click += new EventHandler(Button_Click);
@@ -167,13 +175,17 @@ namespace BayViewHotel.Forms
                     foreach (string x in disabledRooms)
                     {
                         if (x == columnNameDouble[i])
-                            btn.BackColor = System.Drawing.Color.LightBlue;
+                            btn.BackColor = disabilityColor;
                     }
 
                     foreach (string x in unavailableRooms)
                     {
                         if (x == columnNameDouble[i])
-                            btn.Enabled = false;
+                        {
+                            btn.FlatStyle = FlatStyle.Flat;
+                            btn.FlatAppearance.BorderColor = unavailableColor;
+                            btn.FlatAppearance.BorderSize = 3;
+                        }
                     }
 
                     btn.Click += new EventHandler(Button_Click);
@@ -194,13 +206,17 @@ namespace BayViewHotel.Forms
                     foreach (string x in disabledRooms)
                     {
                         if (x == columnNameFamily[i])
-                            btn.BackColor = System.Drawing.Color.LightBlue;
+                            btn.BackColor = disabilityColor;
                     }
 
                     foreach (string x in unavailableRooms)
                     {
                         if (x == columnNameFamily[i])
-                            btn.Enabled = false;
+                        {
+                            btn.FlatStyle = FlatStyle.Flat;
+                            btn.FlatAppearance.BorderColor = unavailableColor;
+                            btn.FlatAppearance.BorderSize = 3;
+                        }
                     }
 
                     btn.Click += new EventHandler(Button_Click);

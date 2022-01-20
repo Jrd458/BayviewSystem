@@ -119,6 +119,7 @@
             this.btnBookNow.TabIndex = 6;
             this.btnBookNow.Text = "Continue to booking with these dates";
             this.btnBookNow.UseVisualStyleBackColor = true;
+            this.btnBookNow.Click += new System.EventHandler(this.btnBookNow_Click);
             // 
             // lblResultFamily
             // 
@@ -210,6 +211,7 @@
             this.timeEnd.ShowUpDown = true;
             this.timeEnd.Size = new System.Drawing.Size(96, 29);
             this.timeEnd.TabIndex = 6;
+            this.timeEnd.Value = new System.DateTime(2021, 12, 27, 12, 30, 0, 0);
             // 
             // dateEnd
             // 
@@ -219,6 +221,7 @@
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(173, 29);
             this.dateEnd.TabIndex = 5;
+            this.dateEnd.ValueChanged += new System.EventHandler(this.dateEnd_ValueChanged);
             // 
             // label4
             // 
@@ -260,6 +263,7 @@
             this.dateStart.Name = "dateStart";
             this.dateStart.Size = new System.Drawing.Size(173, 29);
             this.dateStart.TabIndex = 1;
+            this.dateStart.ValueChanged += new System.EventHandler(this.dateStart_ValueChanged);
             // 
             // label2
             // 

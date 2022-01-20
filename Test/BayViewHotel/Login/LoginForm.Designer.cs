@@ -82,6 +82,7 @@ namespace BayViewHotel.Login
             // 
             // btnLogin
             // 
+            this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(64, 354);
             this.btnLogin.Name = "btnLogin";

@@ -191,5 +191,11 @@ namespace BayViewHotel.Popups
 
             return result;
         }
+
+        private void btnCreateBooking_Click(object sender, EventArgs e)
+        {
+            AddBooking form = new AddBooking("", "");
+            form.ShowDialog();
+        }
     }
 }

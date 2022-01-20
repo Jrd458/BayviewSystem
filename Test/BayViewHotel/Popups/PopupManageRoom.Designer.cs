@@ -37,11 +37,11 @@ namespace BayViewHotel.Popups
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCreateBooking = new System.Windows.Forms.Button();
             this.dataGridActiveBookings = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblValidationError = new System.Windows.Forms.Label();
-            this.btnCreateBooking = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridActiveBookings)).BeginInit();
@@ -134,6 +134,16 @@ namespace BayViewHotel.Popups
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Active Bookings";
             // 
+            // btnCreateBooking
+            // 
+            this.btnCreateBooking.Location = new System.Drawing.Point(367, 288);
+            this.btnCreateBooking.Name = "btnCreateBooking";
+            this.btnCreateBooking.Size = new System.Drawing.Size(116, 27);
+            this.btnCreateBooking.TabIndex = 1;
+            this.btnCreateBooking.Text = "Create New Booking";
+            this.btnCreateBooking.UseVisualStyleBackColor = true;
+            this.btnCreateBooking.Click += new System.EventHandler(this.btnCreateBooking_Click);
+            // 
             // dataGridActiveBookings
             // 
             this.dataGridActiveBookings.AllowUserToAddRows = false;
@@ -191,15 +201,6 @@ namespace BayViewHotel.Popups
             this.lblValidationError.TabIndex = 22;
             this.lblValidationError.Text = "All details fields are required.";
             this.lblValidationError.Visible = false;
-            // 
-            // btnCreateBooking
-            // 
-            this.btnCreateBooking.Location = new System.Drawing.Point(367, 288);
-            this.btnCreateBooking.Name = "btnCreateBooking";
-            this.btnCreateBooking.Size = new System.Drawing.Size(116, 27);
-            this.btnCreateBooking.TabIndex = 1;
-            this.btnCreateBooking.Text = "Create New Booking";
-            this.btnCreateBooking.UseVisualStyleBackColor = true;
             // 
             // PopupManageRoom
             // 
