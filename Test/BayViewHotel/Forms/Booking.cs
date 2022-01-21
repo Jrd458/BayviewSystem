@@ -21,18 +21,16 @@ namespace BayViewHotel.Forms
 
         private void Booking_Load(object sender, EventArgs e)
         {
-            //DateTime datetime = new DateTime(2000, 1, 1, 12, 30, 0);
-            //timeStart.Value = datetime;
-            //timeEnd.Value = datetime;
-
+            // Default dates to 1 night stay starting with today's date
             dateStart.Value = DateTime.Now;
             dateEnd.Value = DateTime.Now.AddDays(1);
 
-            RetrieveBookingSummary();
+            RetrieveBookingSummary(); // Refresh the booking summery (available rooms and booked rooms)
         }
 
         private void dateStart_ValueChanged(object sender, EventArgs e)
         {
+            // Validation for dates
             if (Convert.ToDateTime(dateStart.Value.ToString()) <= Convert.ToDateTime(DateTime.Now.ToString()))
                 dateStart.Value = DateTime.Now;
 
@@ -44,6 +42,7 @@ namespace BayViewHotel.Forms
 
         private void dateEnd_ValueChanged(object sender, EventArgs e)
         {
+            // Validation for dates
             if (Convert.ToDateTime(dateEnd.Value.ToString()) <= Convert.ToDateTime(DateTime.Now.ToString()))
                 dateEnd.Value = DateTime.Now.AddDays(1);
 
@@ -53,6 +52,7 @@ namespace BayViewHotel.Forms
             RetrieveBookingSummary();
         }
 
+        // Refresh the booking summery (total available rooms and booked rooms)
         private void RetrieveBookingSummary()
         {
             int singleAvailable = 0;
@@ -73,8 +73,8 @@ namespace BayViewHotel.Forms
                 SqlCommand cmd = new SqlCommand("RetrieveRoomAvailabilityStatus", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@StartDate", dateStart.Value)); // testing
-                cmd.Parameters.Add(new SqlParameter("@EndDate", dateEnd.Value)); // testing
+                cmd.Parameters.Add(new SqlParameter("@StartDate", dateStart.Value)); // Date picker start date
+                cmd.Parameters.Add(new SqlParameter("@EndDate", dateEnd.Value)); // Date picker end date
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -118,6 +118,8 @@ namespace BayViewHotel.Forms
                                 break;
                         }
                     }
+
+                    // Update summary labels with totals
                     lblResultSingle.Text = singleUnavailable + " booked, " + singleAvailable + " available for booking";
                     lblResultDouble.Text = doubleUnavailable + " booked, " + doubleAvailable + " available for booking";
                     lblResultFamily.Text = familyUnavailable + " booked, " + familyAvailable + " available for booking";
@@ -136,15 +138,17 @@ namespace BayViewHotel.Forms
             }
         }
 
+        // Show form to view all bookings where they can be managed and edited
         private void btnViewBookings_Click(object sender, EventArgs e)
         {
             ViewBookings form = new ViewBookings();
             form.ShowDialog();
         }
 
+        // Add booking form with selected dates
         private void btnBookNow_Click(object sender, EventArgs e)
         {
-            AddBooking form = new AddBooking(dateStart.Value.ToString("dd/MM/yyyy"), dateEnd.Value.ToString("dd/MM/yyyy"));
+            AddBooking form = new AddBooking(dateStart.Value.ToString("dd/MM/yyyy"), dateEnd.Value.ToString("dd/MM/yyyy"), null);
             form.ShowDialog();
         }
     }

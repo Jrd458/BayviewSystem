@@ -140,3 +140,4 @@ C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.c
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.csproj.CopyComplete
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.exe
 C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.pdb
+C:\Users\Kieran\Desktop\BayviewSystem\Test\BayViewHotel\obj\Debug\BayViewHotel.csproj.AssemblyReference.cache

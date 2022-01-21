@@ -26,9 +26,10 @@ namespace BayViewHotel.Forms
 
         private void txtSearchBookingNumber_KeyUp(object sender, KeyEventArgs e)
         {
-            RetrieveCustomerList();
+            RetrieveCustomerList(); // Refresh the list each time a new keystroke is detected for search function
         }
 
+        // Retrieves invoice records from tblInvoice using the search bar in the invoicing screen.
         public void RetrieveCustomerList()
         {
             try
@@ -38,7 +39,7 @@ namespace BayViewHotel.Forms
                     con.Open();
 
                     SqlCommand cmd = new SqlCommand(@"SELECT * FROM Invoicing WHERE InvoiceID LIKE '%' + @param + '%'", con);
-                    cmd.Parameters.Add(new SqlParameter("@param", txtSearchBookingNumber.Text));
+                    cmd.Parameters.Add(new SqlParameter("@param", txtSearchBookingNumber.Text)); // Inserts search box text
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -56,16 +57,16 @@ namespace BayViewHotel.Forms
                         row["BookingID"] = reader["BookingID"];
                         row["CustomerName"] = reader["CustomerName"];
                         row["TotalCost"] = reader["TotalCost"];
-                        dt.Rows.Add(row);
+                        dt.Rows.Add(row); // Go through each record and add them to data table
                     }
 
+                    // Set to more readable column titles
                     dt.Columns["InvoiceID"].ColumnName = "Invoice Number";
                     dt.Columns["BookingID"].ColumnName = "Booking Reference";
                     dt.Columns["CustomerName"].ColumnName = "Customer Full Name";
                     dt.Columns["TotalCost"].ColumnName = "Final Cost";
 
-                    dataGridInvoicing.DataSource = dt;
-                    //dataGridInvoicing.Columns["CustomerID"].Visible = false;
+                    dataGridInvoicing.DataSource = dt; // Puts columns into data grid view
 
                     con.Close();
                 }

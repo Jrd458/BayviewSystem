@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,13 @@ namespace BayViewHotel
         {
             InitializeComponent();
         }
-        
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            GenerateStaffGreeting(Properties.Settings.Default.StaffID);
+            btnMenuHome_Click(null, null);
+        }
+
         private void openChildForm(Form childForm)
         {
             if (activeForm != null)
@@ -43,11 +50,6 @@ namespace BayViewHotel
             btnMenuCustomers.BackColor = Color.Gainsboro;
             btnMenuRooms.BackColor = Color.WhiteSmoke;
             btnMenuAccounts.BackColor = Color.Gainsboro;
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            btnMenuHome_Click(null, null);
         }
 
         private void btnMenuHome_Click(object sender, EventArgs e)
@@ -107,6 +109,38 @@ namespace BayViewHotel
         {
             LoginForm login = new LoginForm();
             login.Show();
+        }
+
+        private void GenerateStaffGreeting(int staffId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(@"SELECT Title, LastName FROM tblStaff WHERE StaffID = @staffid", con);
+                cmd.Parameters.AddWithValue("@staffid", staffId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        lblStaffGreeting.Text = "WELCOME BACK, " + reader["Title"].ToString().ToUpper() + " " + reader["LastName"].ToString().ToUpper();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error occurred. Please contact your administrator.");
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

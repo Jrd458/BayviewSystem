@@ -200,7 +200,7 @@ namespace BayViewHotel.Popups
 
         private void btnCreateBooking_Click(object sender, EventArgs e)
         {
-            AddBooking form = new AddBooking("", "");
+            AddBooking form = new AddBooking("", "", null);
             form.ShowDialog();
         }
 

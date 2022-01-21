@@ -13,15 +13,27 @@ namespace BayViewHotel.Popups
 {
     public partial class AddBooking : Form
     {
+        public int _selectedCustomerId;
         string _startDate;
         string _endDate;
 
-        public int _selectedCustomerId;
         int _totalCost = 0;
 
-        public AddBooking(string StartDate, string EndDate)
+        public AddBooking(string StartDate, string EndDate, string importedCustomerId)
         {
             InitializeComponent();
+
+            if (importedCustomerId != null)
+            {
+                _selectedCustomerId = Convert.ToInt32(importedCustomerId);
+
+                lblSelectedCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+                lblSelectedCustomer.ForeColor = Color.Black;
+                lblSelectedCustomer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                SetCustomerSelectionLabel(_selectedCustomerId);
+            }
+
             _startDate = StartDate;
             _endDate = EndDate;
         }

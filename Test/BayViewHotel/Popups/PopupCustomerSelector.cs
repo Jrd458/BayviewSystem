@@ -83,7 +83,6 @@ namespace BayViewHotel.Popups
             {
                 MessageBox.Show(ex.Message, "Error");
             }
-
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)

@@ -59,7 +59,7 @@ namespace BayViewHotel.Popups
             this.lblEditCustomer = new System.Windows.Forms.Label();
             this.btnCloseAccount = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCreateBooking = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -377,7 +377,7 @@ namespace BayViewHotel.Popups
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnCreateBooking);
             this.groupBox3.Controls.Add(this.btnCloseAccount);
             this.groupBox3.Location = new System.Drawing.Point(383, 280);
             this.groupBox3.Name = "groupBox3";
@@ -386,16 +386,17 @@ namespace BayViewHotel.Popups
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
             // 
-            // button1
+            // btnCreateBooking
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(17, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(183, 52);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Create Booking";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCreateBooking.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateBooking.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateBooking.Location = new System.Drawing.Point(17, 29);
+            this.btnCreateBooking.Name = "btnCreateBooking";
+            this.btnCreateBooking.Size = new System.Drawing.Size(183, 52);
+            this.btnCreateBooking.TabIndex = 33;
+            this.btnCreateBooking.Text = "Create Booking";
+            this.btnCreateBooking.UseVisualStyleBackColor = true;
+            this.btnCreateBooking.Click += new System.EventHandler(this.btnCreateBooking_Click);
             // 
             // PopupEditCustomer
             // 
@@ -457,6 +458,6 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Label lblEditCustomer;
         private System.Windows.Forms.Button btnCloseAccount;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateBooking;
     }
 }
