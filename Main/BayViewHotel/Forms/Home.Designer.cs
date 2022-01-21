@@ -45,7 +45,6 @@
             this.kieranTestDataSet = new BayViewHotel.KieranTestDataSet();
             this.tblKieranBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbl_KieranTableAdapter = new BayViewHotel.KieranTestDataSetTableAdapters.Tbl_KieranTableAdapter();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -79,21 +78,6 @@
             // tbl_KieranTableAdapter
             // 
             this.tbl_KieranTableAdapter.ClearBeforeFill = true;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.IsDocumentMapWidthFixed = true;
-            this.reportViewer1.Location = new System.Drawing.Point(688, 704);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote;
-            this.reportViewer1.ServerReport.ReportPath = "/TestPieChart";
-            this.reportViewer1.ServerReport.ReportServerUrl = new System.Uri("http://51.195.252.182/ReportServer", System.UriKind.Absolute);
-            this.reportViewer1.ShowContextMenu = false;
-            this.reportViewer1.ShowCredentialPrompts = false;
-            this.reportViewer1.ShowParameterPrompts = false;
-            this.reportViewer1.ShowToolBar = false;
-            this.reportViewer1.Size = new System.Drawing.Size(250, 138);
-            this.reportViewer1.TabIndex = 1;
             // 
             // chart1
             // 
@@ -167,7 +151,6 @@
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
-            this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Home";
@@ -189,7 +172,6 @@
         private KieranTestDataSet kieranTestDataSet;
         private System.Windows.Forms.BindingSource tblKieranBindingSource;
         private KieranTestDataSetTableAdapters.Tbl_KieranTableAdapter tbl_KieranTableAdapter;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
