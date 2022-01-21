@@ -759,5 +759,10 @@ namespace BayViewHotel.Popups
                 }
             }
         }
+
+        private void btnCancelBooking_Click(object sender, EventArgs e)
+        {
+            cancelBookingToolStripMenuItem_Click(null, null);
+        }
     }
 }

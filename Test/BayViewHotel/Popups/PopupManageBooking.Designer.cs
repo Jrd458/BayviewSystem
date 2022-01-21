@@ -60,6 +60,7 @@ namespace BayViewHotel.Popups
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelBookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCancelBooking = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numChildren)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAdults)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -388,15 +389,30 @@ namespace BayViewHotel.Popups
             // cancelBookingToolStripMenuItem
             // 
             this.cancelBookingToolStripMenuItem.Name = "cancelBookingToolStripMenuItem";
-            this.cancelBookingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cancelBookingToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.cancelBookingToolStripMenuItem.Text = "Cancel Booking";
             this.cancelBookingToolStripMenuItem.Click += new System.EventHandler(this.cancelBookingToolStripMenuItem_Click);
+            // 
+            // btnCancelBooking
+            // 
+            this.btnCancelBooking.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelBooking.FlatAppearance.BorderSize = 2;
+            this.btnCancelBooking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelBooking.Font = new System.Drawing.Font("Mukta Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelBooking.Location = new System.Drawing.Point(570, 34);
+            this.btnCancelBooking.Name = "btnCancelBooking";
+            this.btnCancelBooking.Size = new System.Drawing.Size(101, 30);
+            this.btnCancelBooking.TabIndex = 91;
+            this.btnCancelBooking.Text = "CANCEL BOOKING";
+            this.btnCancelBooking.UseVisualStyleBackColor = true;
+            this.btnCancelBooking.Click += new System.EventHandler(this.btnCancelBooking_Click);
             // 
             // PopupManageBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 406);
+            this.Controls.Add(this.btnCancelBooking);
             this.Controls.Add(this.lblPersonsError);
             this.Controls.Add(this.lblTotalCost);
             this.Controls.Add(this.lblCostTitle);
@@ -477,5 +493,6 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cancelBookingToolStripMenuItem;
+        private System.Windows.Forms.Button btnCancelBooking;
     }
 }
