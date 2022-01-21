@@ -13,17 +13,22 @@ namespace BayViewHotel.Popups
 {
     public partial class PopupManageBooking : Form
     {
+        PopupManageRoom _master;
+
         public int _selectedCustomerId;
+
+        string _parentScreen;
         string _bookingId;
 
         int _totalCost = 0;
-
         bool fillingData = true;
 
-        public PopupManageBooking(string bookingId)
+        public PopupManageBooking(string bookingId, string parentScreen, PopupManageRoom master)
         {
             InitializeComponent();
             _bookingId = bookingId;
+            _parentScreen = parentScreen;
+            _master = master;
         }
 
         private void PopupManageBooking_Load(object sender, EventArgs e)
@@ -472,6 +477,11 @@ namespace BayViewHotel.Popups
                             UpdateInvoice(bookingId);
 
                             con.Close();
+
+                            if (_parentScreen == "ManageRoom")
+                            {
+                                _master.LoadBookings();
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -729,6 +739,12 @@ namespace BayViewHotel.Popups
                         cmd.ExecuteScalar();
 
                         con.Close();
+                        
+                        if (_parentScreen == "ManageRoom")
+                        {
+                            _master.LoadBookings();
+                        }
+
                         this.Close();
                     }
                     catch (Exception ex)

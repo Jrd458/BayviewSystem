@@ -33,7 +33,7 @@ namespace BayViewHotel.Popups
                     MessageBox.Show("Failed to load booking: This booking has been cancelled.", "Error");
                 } else
                 {
-                    PopupManageBooking formManageBooking = new PopupManageBooking(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    PopupManageBooking formManageBooking = new PopupManageBooking(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(), "ViewBookings", null);
                     formManageBooking.ShowDialog();
                 }
             }

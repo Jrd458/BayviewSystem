@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BayViewHotelModel1StoreContainer" CdmEntityContainer="BayViewHotelRevenueEntity">
+    <EntitySetMapping Name="Revenues">
+      <EntityTypeMapping TypeName="BayViewHotelModel1.Revenue">
+        <MappingFragment StoreEntitySet="Revenue">
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="TotalPaid" ColumnName="TotalPaid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

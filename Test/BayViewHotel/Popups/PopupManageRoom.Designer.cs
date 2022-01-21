@@ -42,6 +42,7 @@ namespace BayViewHotel.Popups
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblValidationError = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridActiveBookings)).BeginInit();
@@ -125,6 +126,7 @@ namespace BayViewHotel.Popups
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.btnCreateBooking);
             this.groupBox2.Controls.Add(this.dataGridActiveBookings);
             this.groupBox2.Location = new System.Drawing.Point(17, 171);
@@ -136,12 +138,13 @@ namespace BayViewHotel.Popups
             // 
             // btnCreateBooking
             // 
-            this.btnCreateBooking.Location = new System.Drawing.Point(367, 288);
+            this.btnCreateBooking.Location = new System.Drawing.Point(367, 309);
             this.btnCreateBooking.Name = "btnCreateBooking";
             this.btnCreateBooking.Size = new System.Drawing.Size(116, 27);
             this.btnCreateBooking.TabIndex = 1;
             this.btnCreateBooking.Text = "Create New Booking";
             this.btnCreateBooking.UseVisualStyleBackColor = true;
+            this.btnCreateBooking.Visible = false;
             this.btnCreateBooking.Click += new System.EventHandler(this.btnCreateBooking_Click);
             // 
             // dataGridActiveBookings
@@ -152,7 +155,7 @@ namespace BayViewHotel.Popups
             this.dataGridActiveBookings.AllowUserToResizeRows = false;
             this.dataGridActiveBookings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridActiveBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridActiveBookings.Location = new System.Drawing.Point(18, 24);
+            this.dataGridActiveBookings.Location = new System.Drawing.Point(18, 45);
             this.dataGridActiveBookings.MultiSelect = false;
             this.dataGridActiveBookings.Name = "dataGridActiveBookings";
             this.dataGridActiveBookings.ReadOnly = true;
@@ -162,6 +165,7 @@ namespace BayViewHotel.Popups
             this.dataGridActiveBookings.ShowRowErrors = false;
             this.dataGridActiveBookings.Size = new System.Drawing.Size(464, 256);
             this.dataGridActiveBookings.TabIndex = 0;
+            this.dataGridActiveBookings.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridActiveBookings_CellDoubleClick);
             // 
             // btnCancel
             // 
@@ -202,6 +206,16 @@ namespace BayViewHotel.Popups
             this.lblValidationError.Text = "All details fields are required.";
             this.lblValidationError.Visible = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(181, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Double click a booking to manage it.";
+            // 
             // PopupManageRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +238,7 @@ namespace BayViewHotel.Popups
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridActiveBookings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -245,5 +260,6 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblValidationError;
         private System.Windows.Forms.Button btnCreateBooking;
+        private System.Windows.Forms.Label label3;
     }
 }

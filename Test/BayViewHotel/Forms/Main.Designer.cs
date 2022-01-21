@@ -100,7 +100,7 @@
             this.btnMenuAccounts.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuAccounts.Size = new System.Drawing.Size(238, 90);
             this.btnMenuAccounts.TabIndex = 5;
-            this.btnMenuAccounts.Text = "accounts";
+            this.btnMenuAccounts.Text = "Invoicing";
             this.btnMenuAccounts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuAccounts.UseVisualStyleBackColor = false;
             this.btnMenuAccounts.Click += new System.EventHandler(this.btnMenuAccounts_Click);
@@ -120,7 +120,7 @@
             this.btnMenuRooms.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuRooms.Size = new System.Drawing.Size(238, 90);
             this.btnMenuRooms.TabIndex = 4;
-            this.btnMenuRooms.Text = "rooms";
+            this.btnMenuRooms.Text = "Rooms";
             this.btnMenuRooms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuRooms.UseVisualStyleBackColor = false;
             this.btnMenuRooms.Click += new System.EventHandler(this.btnMenuRooms_Click);
@@ -140,7 +140,7 @@
             this.btnMenuCustomers.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuCustomers.Size = new System.Drawing.Size(238, 90);
             this.btnMenuCustomers.TabIndex = 3;
-            this.btnMenuCustomers.Text = "customers";
+            this.btnMenuCustomers.Text = "Customers";
             this.btnMenuCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuCustomers.UseVisualStyleBackColor = false;
             this.btnMenuCustomers.Click += new System.EventHandler(this.btnMenuCustomers_Click);
@@ -160,7 +160,7 @@
             this.btnMenuBooking.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuBooking.Size = new System.Drawing.Size(238, 90);
             this.btnMenuBooking.TabIndex = 2;
-            this.btnMenuBooking.Text = "booking";
+            this.btnMenuBooking.Text = "Booking";
             this.btnMenuBooking.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuBooking.UseVisualStyleBackColor = false;
             this.btnMenuBooking.Click += new System.EventHandler(this.btnMenuBooking_Click);
@@ -179,7 +179,7 @@
             this.btnMenuHome.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuHome.Size = new System.Drawing.Size(238, 90);
             this.btnMenuHome.TabIndex = 1;
-            this.btnMenuHome.Text = "home";
+            this.btnMenuHome.Text = "Home";
             this.btnMenuHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuHome.UseVisualStyleBackColor = false;
             this.btnMenuHome.Click += new System.EventHandler(this.btnMenuHome_Click);

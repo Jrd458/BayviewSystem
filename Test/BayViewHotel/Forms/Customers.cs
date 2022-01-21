@@ -80,7 +80,6 @@ namespace BayViewHotel.Forms
             {
                 MessageBox.Show(ex.Message, "Error");
             }
-            
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)

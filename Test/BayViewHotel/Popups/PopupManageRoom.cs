@@ -60,6 +60,11 @@ namespace BayViewHotel.Popups
                 MessageBox.Show(ex.Message);
             }
 
+            LoadBookings();
+        }
+
+        public void LoadBookings()
+        {
             try
             {
                 using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -98,7 +103,8 @@ namespace BayViewHotel.Popups
 
                     con.Close();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -195,6 +201,15 @@ namespace BayViewHotel.Popups
         private void btnCreateBooking_Click(object sender, EventArgs e)
         {
             AddBooking form = new AddBooking("", "");
+            form.ShowDialog();
+        }
+
+        private void dataGridActiveBookings_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridActiveBookings.Rows[e.RowIndex];
+            string bookingId = Convert.ToString(selectedRow.Cells["BookingID"].Value);
+
+            PopupManageBooking form = new PopupManageBooking(bookingId, "ManageRoom", this);
             form.ShowDialog();
         }
     }

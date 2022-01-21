@@ -390,7 +390,7 @@ namespace BayViewHotel.Popups
                             GenerateInvoice(customerId);
 
                             con.Close();
-                            this.Close();
+                            //this.Close();
                         }
                         catch (Exception ex)
                         {
