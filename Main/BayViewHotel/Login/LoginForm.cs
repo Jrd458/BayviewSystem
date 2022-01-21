@@ -37,7 +37,7 @@ namespace BayViewHotel.Login
 
         private void txtUsername_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter) // Users can press the enter key as an alternative to pressing the login button
             {
                 Login();
             }
@@ -45,22 +45,24 @@ namespace BayViewHotel.Login
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter) // Users can press the enter key as an alternative to pressing the login button
             {
                 Login();
             }
         }
 
+        // Retrieve the password salt for a specific user, allows for checking their password hash is correct
         private string GetSaltForUser(string username)
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            con.Open();
 
             string result = null;
 
             try
             {
-                SqlCommand cmd = new SqlCommand(@"SELECT TOP 1 Salt FROM tblStaff WHERE UserName = @username", con);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(@"SELECT TOP 1 Salt FROM tblStaff WHERE UserName = @username", con); // Grab salt for specific user
                 cmd.Parameters.AddWithValue("@username", username);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -73,7 +75,7 @@ namespace BayViewHotel.Login
                     }
                 } else
                 {
-                    result = null;
+                    result = null; // If it returns no salt then user doesn't exist, return null
                 }
             }
             catch (Exception ex)
@@ -87,15 +89,17 @@ namespace BayViewHotel.Login
             return result;
         }
 
+        // Check if the user exists, for validation
         private bool IsUserExists(string username)
         {
             SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            con.Open();
 
             bool result = false;
 
             try
             {
+                con.Open();
+
                 SqlCommand cmd = new SqlCommand(@"SELECT COUNT(*) FROM tblStaff WHERE UserName = @username", con);
                 cmd.Parameters.AddWithValue("@username", username);
 
@@ -117,25 +121,27 @@ namespace BayViewHotel.Login
             return result;
         }
 
+        // Main login functionality
         private void Login()
         {
+            // Reset control visuals
             txtUsername.Enabled = false;
             txtPassword.Enabled = false;
             btnLogin.Enabled = false;
             btnClose.Enabled = false;
 
-            lblError.Visible = false;
-            string userName = txtUsername.Text.ToLower();
-            string password = txtPassword.Text;
+            lblError.Visible = false; // Remove any errors that would've occurred from previous attemps
+            string userName = txtUsername.Text.ToLower(); // Set username
+            string password = txtPassword.Text; // Set password
 
             try
             {
                 if (IsUserExists(userName))
                 {
-                    string userSalt = GetSaltForUser(userName);
-                    byte[] salt = Convert.FromBase64String(userSalt);
+                    string userSalt = GetSaltForUser(userName); // Grab the salt for getting the correct password hash
+                    byte[] salt = Convert.FromBase64String(userSalt); // Convert to string
 
-                    string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                    string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2( // Uses Pbkdf2 to generate the password hash using the salt and password string to see if the hash matches up with that in the table
                         password: password,
                         salt: salt,
                         prf: KeyDerivationPrf.HMACSHA256,
@@ -151,26 +157,26 @@ namespace BayViewHotel.Login
 
                     int count = (int)cmd.ExecuteScalar();
 
-                    //MessageBox.Show("USERNAME: " + userName + Environment.NewLine + "SALT: " + Convert.ToBase64String(salt) + Environment.NewLine + "SALT DB: " + userSalt + Environment.NewLine + "HASH: " + hashedPassword);
-
-                    if (count > 0)
+                    if (count > 0) // If the result of the SQL count is more than 0 then the user exists and the password is correct
                     {
-                        LogLogin(userName, true);
+                        LogLogin(userName, true); // Log the login attempt to the table
+                        Properties.Settings.Default.StaffID = GetStaffID(userName); // Set the staff ID for keeping track of their actions (bookings, generate greeting message etc)
                         Main mainForm = new Main();
-                        mainForm.Show();
-                        this.Hide();
+                        mainForm.Show(); // Open main form on success
+                        this.Hide(); // Close login on success
                     } else
                     {
-                        LogLogin(userName, false);
-                        lblError.Visible = true;
+                        LogLogin(userName, false); // Log as unsuccessful login
+                        lblError.Visible = true; // Show login details were incorrect error
+                        this.ActiveControl = txtPassword; // Focus back to password text box
                     }
 
                     con.Close();
-                    enableGui();
+                    enableGui(); // The text boxes/buttons are disabled while the server is connecting to the database, re-enable once this process has ceased
                 } else
                 {
                     LogLogin(userName, false);
-                    enableGui();
+                    enableGui(); // The text boxes/buttons are disabled while the server is connecting to the database, re-enable once this process has ceased for invalid login
                     lblError.Visible = true;
                 }
             } catch (Exception ex)
@@ -181,6 +187,7 @@ namespace BayViewHotel.Login
             }
         }
 
+        // Re-enable textbox/button visuals
         private void enableGui()
         {
             txtUsername.Enabled = true;
@@ -189,15 +196,52 @@ namespace BayViewHotel.Login
             btnClose.Enabled = true;
         }
 
-        private void LogLogin(string username, bool loginSuccess)
+        // Returns the staff ID using their username for setting it to application settings
+        private int GetStaffID(string username)
         {
-            SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            con.Open();
+            int result = 0;
 
             try
             {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT StaffID FROM tblStaff WHERE UserName = @username", con);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = Convert.ToInt32(reader["StaffID"]);
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            return result;
+        }
+
+        // When called it will log a new login attempt as either login success true or false with the provided username
+        private void LogLogin(string username, bool loginSuccess)
+        {
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString);
+
+            try
+            {
+                con.Open();
+
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO LoginLog (UserName, LoginSuccess) VALUES (@username,@loginsuccess)", con);
-                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@username", username); // Sets as parameters to provide pretty good sanitation for the entered details and avoids sql errors/injection attempts
                 cmd.Parameters.AddWithValue("@loginsuccess", loginSuccess);
 
                 cmd.ExecuteScalar();

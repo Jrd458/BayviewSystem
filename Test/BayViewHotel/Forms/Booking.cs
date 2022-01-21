@@ -70,6 +70,44 @@ namespace BayViewHotel.Forms
             {
                 con.Open();
 
+                /* SQL SERVER STORED PROCEDURE
+                 * 
+                 * ALTER PROCEDURE [dbo].[RetrieveRoomAvailabilityStatus]
+	                     @StartDate			DATE
+	                    ,@EndDate			DATE
+                    AS
+	                    SELECT
+		                     r.RoomID
+		                    ,r.RoomNo
+		                    ,r.RoomType
+		                    ,r.Disability
+		                    ,
+		                    CASE
+			                    WHEN RoomID NOT IN 
+				                    (
+					                    SELECT
+						                    RoomID 
+					                    FROM 
+						                    tblBooking
+
+					                    WHERE
+					                    (
+						                    @StartDate <= CheckOutDate AND @StartDate >= CheckInDate
+					                    OR
+						                    CheckInDate <= @EndDate AND CheckInDate >= @StartDate
+					                    )
+					                    AND
+						                    Status = 'Active'
+				                    )
+				                    THEN
+					                    CAST(1 AS BIT)
+				                    ELSE
+					                    CAST(0 AS BIT)
+				                    END AS
+					                    Available
+	                    FROM tblRoom r
+                */
+
                 SqlCommand cmd = new SqlCommand("RetrieveRoomAvailabilityStatus", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 

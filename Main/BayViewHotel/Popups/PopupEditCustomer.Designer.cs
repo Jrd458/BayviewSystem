@@ -59,6 +59,7 @@ namespace BayViewHotel.Popups
             this.lblEditCustomer = new System.Windows.Forms.Label();
             this.btnCloseAccount = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCreateBooking = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -113,7 +114,7 @@ namespace BayViewHotel.Popups
             // 
             // txtPostcode
             // 
-            this.txtPostcode.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPostcode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPostcode.Location = new System.Drawing.Point(19, 278);
             this.txtPostcode.Name = "txtPostcode";
             this.txtPostcode.Size = new System.Drawing.Size(117, 25);
@@ -131,7 +132,7 @@ namespace BayViewHotel.Popups
             // 
             // txtAddressLine4
             // 
-            this.txtAddressLine4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddressLine4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddressLine4.Location = new System.Drawing.Point(19, 219);
             this.txtAddressLine4.Name = "txtAddressLine4";
             this.txtAddressLine4.Size = new System.Drawing.Size(307, 25);
@@ -139,7 +140,7 @@ namespace BayViewHotel.Popups
             // 
             // txtAddressLine1
             // 
-            this.txtAddressLine1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddressLine1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddressLine1.Location = new System.Drawing.Point(19, 45);
             this.txtAddressLine1.Name = "txtAddressLine1";
             this.txtAddressLine1.Size = new System.Drawing.Size(307, 25);
@@ -167,7 +168,7 @@ namespace BayViewHotel.Popups
             // 
             // txtAddressLine2
             // 
-            this.txtAddressLine2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddressLine2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddressLine2.Location = new System.Drawing.Point(19, 102);
             this.txtAddressLine2.Name = "txtAddressLine2";
             this.txtAddressLine2.Size = new System.Drawing.Size(307, 25);
@@ -195,7 +196,7 @@ namespace BayViewHotel.Popups
             // 
             // txtAddressLine3
             // 
-            this.txtAddressLine3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddressLine3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddressLine3.Location = new System.Drawing.Point(19, 162);
             this.txtAddressLine3.Name = "txtAddressLine3";
             this.txtAddressLine3.Size = new System.Drawing.Size(307, 25);
@@ -246,7 +247,7 @@ namespace BayViewHotel.Popups
             // 
             // txtContactNo
             // 
-            this.txtContactNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactNo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContactNo.Location = new System.Drawing.Point(19, 114);
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(307, 25);
@@ -254,7 +255,7 @@ namespace BayViewHotel.Popups
             // 
             // dateDateOfBirth
             // 
-            this.dateDateOfBirth.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDateOfBirth.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateDateOfBirth.Location = new System.Drawing.Point(366, 114);
             this.dateDateOfBirth.Name = "dateDateOfBirth";
@@ -274,7 +275,7 @@ namespace BayViewHotel.Popups
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(19, 173);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(547, 25);
@@ -302,7 +303,7 @@ namespace BayViewHotel.Popups
             // 
             // comboTitle
             // 
-            this.comboTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboTitle.FormattingEnabled = true;
             this.comboTitle.Items.AddRange(new object[] {
             "Mr",
@@ -317,7 +318,7 @@ namespace BayViewHotel.Popups
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFirstName.Location = new System.Drawing.Point(127, 53);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(199, 25);
@@ -325,7 +326,7 @@ namespace BayViewHotel.Popups
             // 
             // txtLastName
             // 
-            this.txtLastName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLastName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLastName.Location = new System.Drawing.Point(367, 53);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(199, 25);
@@ -363,8 +364,10 @@ namespace BayViewHotel.Popups
             // 
             // btnCloseAccount
             // 
-            this.btnCloseAccount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseAccount.Location = new System.Drawing.Point(19, 30);
+            this.btnCloseAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseAccount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseAccount.ForeColor = System.Drawing.Color.Maroon;
+            this.btnCloseAccount.Location = new System.Drawing.Point(17, 102);
             this.btnCloseAccount.Name = "btnCloseAccount";
             this.btnCloseAccount.Size = new System.Drawing.Size(183, 52);
             this.btnCloseAccount.TabIndex = 32;
@@ -374,6 +377,7 @@ namespace BayViewHotel.Popups
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnCreateBooking);
             this.groupBox3.Controls.Add(this.btnCloseAccount);
             this.groupBox3.Location = new System.Drawing.Point(383, 280);
             this.groupBox3.Name = "groupBox3";
@@ -381,6 +385,18 @@ namespace BayViewHotel.Popups
             this.groupBox3.TabIndex = 33;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
+            // 
+            // btnCreateBooking
+            // 
+            this.btnCreateBooking.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateBooking.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateBooking.Location = new System.Drawing.Point(17, 29);
+            this.btnCreateBooking.Name = "btnCreateBooking";
+            this.btnCreateBooking.Size = new System.Drawing.Size(183, 52);
+            this.btnCreateBooking.TabIndex = 33;
+            this.btnCreateBooking.Text = "Create Booking";
+            this.btnCreateBooking.UseVisualStyleBackColor = true;
+            this.btnCreateBooking.Click += new System.EventHandler(this.btnCreateBooking_Click);
             // 
             // PopupEditCustomer
             // 
@@ -442,5 +458,6 @@ namespace BayViewHotel.Popups
         private System.Windows.Forms.Label lblEditCustomer;
         private System.Windows.Forms.Button btnCloseAccount;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnCreateBooking;
     }
 }

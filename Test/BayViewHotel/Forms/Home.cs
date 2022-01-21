@@ -23,45 +23,13 @@ namespace BayViewHotel.Forms
 
         private void Home_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'kieranTestDataSet.Tbl_Kieran' table. You can move, or remove it, as needed.
-            //this.tbl_KieranTableAdapter.Fill(this.kieranTestDataSet.Tbl_Kieran);
-            //IReportServerCredentials creds = new CustomReportCredentials("Administrator", "Cambrian@1", "");
-            NetworkCredential customCred = new NetworkCredential("Administrator", "Cambrian@1", "WIN-41GL1FSD01Q");
-            //this.reportViewer1.ServerReport.ReportServerCredentials.NetworkCredentials = customCred;
-            //this.reportViewer1.RefreshReport();
-
+            // Load in the chart data
             LoadBookingChart();
             LoadRoomTypeDistributionChart();
+            LoadRevenueChart();
         }
 
-        private void LoadRoomTypeDistributionChart()
-        {
-            try
-            {
-                using (BayViewHotelEntities db = new BayViewHotelEntities())
-                {
-                    chart2.DataSource = db.RoomTypeDistributions.ToList();
-                    chart2.Series["Room Type"].XValueMember = "RoomType";
-                    chart2.Series["Room Type"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
-                    chart2.Series["Room Type"].YValueMembers = "TotalBookings";
-                    chart2.Series["Room Type"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                }
-
-                using (BayViewHotelRevenueEntity db = new BayViewHotelRevenueEntity())
-                {
-                    chart3.DataSource = db.Revenues.ToList();
-                    chart3.Series["Revenue"].XValueMember = "BookingDate";
-                    chart3.Series["Revenue"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-                    chart3.Series["Revenue"].YValueMembers = "TotalPaid";
-                    chart3.Series["Revenue"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                }
-            } catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-            }
-            
-        }
-
+        // Bar chart showing total bookings for months of the year
         private void LoadBookingChart()
         {
             string[] months = { "January", "Februray", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
@@ -72,9 +40,25 @@ namespace BayViewHotel.Forms
                 {
                     con.Open();
 
+                    /* SQL SERVER STORED PROCEDURE
+                     * 
+                     * ALTER PROCEDURE [dbo].[RetrieveYearlyBookingSummary]
+	                        @Month		INT
+                        AS
+	                        SELECT
+		                        COUNT(*) AS TotalBookings
+	                        FROM
+		                        tblBooking b
+	                        WHERE
+		                        MONTH(b.CheckInDate) = @Month
+		                        AND
+		                        YEAR(b.CheckInDate) = YEAR(GETDATE())
+                     */
+
+                    // Look through each month by retrieving total bookings for every month
                     for (int i = 1; i < 13; i++)
                     {
-                        SqlCommand cmd = new SqlCommand("RetrieveYearlyBookingSummary", con);
+                        SqlCommand cmd = new SqlCommand("RetrieveYearlyBookingSummary", con); // Call stored procedure
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@Month", i));
 
@@ -82,7 +66,7 @@ namespace BayViewHotel.Forms
 
                         while (reader.Read())
                         {
-                            chart1.Series["Bookings"].Points.AddXY(months[i - 1], reader["TotalBookings"]);
+                            chart1.Series["Bookings"].Points.AddXY(months[i - 1], reader["TotalBookings"]); // Add points for each month's bookings
                         }
 
                         reader.Close();
@@ -95,6 +79,85 @@ namespace BayViewHotel.Forms
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+        }
+
+        // Pie chart for total bookings by room type
+        private void LoadRoomTypeDistributionChart()
+        {
+            /* SQL SERVER VIEW
+             * 
+             * ALTER VIEW [dbo].[RoomTypeDistribution]
+                AS
+	                SELECT
+		                 r.RoomType
+		                ,COUNT(r.RoomType) AS TotalBookings
+	                FROM
+		                tblBooking b
+	                INNER JOIN
+		                tblRoom r
+		                ON b.RoomID = r.RoomID
+	                GROUP BY
+		                r.RoomType
+             * 
+             */
+
+            try
+            {
+                using (BayViewHotelEntities db = new BayViewHotelEntities())
+                {
+                    // Uses data entity connected to SQL view table
+                    chart2.DataSource = db.RoomTypeDistributions.ToList();
+                    chart2.Series["Room Type"].XValueMember = "RoomType";
+                    chart2.Series["Room Type"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+                    chart2.Series["Room Type"].YValueMembers = "TotalBookings";
+                    chart2.Series["Room Type"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+        }
+
+        // Line chart for revenue for the month
+        private void LoadRevenueChart()
+        {
+            /* SQL SERVER VIEW
+             *  
+             * ALTER VIEW [dbo].[Revenue]
+                AS
+	                SELECT
+		                 b.CheckInDate AS BookingDate
+		                ,i.TotalCost AS TotalPaid
+	                FROM
+		                tblBooking b
+	                LEFT JOIN
+		                tblInvoice i
+		                ON b.BookingID = i.BookingID
+	                WHERE
+		                MONTH(b.CheckInDate) = MONTH(GETDATE())
+		                AND
+		                YEAR(b.CheckInDate) = YEAR(GETDATE())
+             * 
+             */
+            try
+            {
+                using (BayViewHotelRevenueEntity db = new BayViewHotelRevenueEntity())
+                {
+                    // Uses data entity connected to SQL view table
+                    chart3.DataSource = db.Revenues.ToList();
+                    chart3.Series["Revenue"].XValueMember = "BookingDate";
+                    chart3.Series["Revenue"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+                    chart3.Series["Revenue"].YValueMembers = "TotalPaid";
+                    chart3.Series["Revenue"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
         }
     }
 }

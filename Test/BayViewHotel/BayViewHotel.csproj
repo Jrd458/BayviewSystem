@@ -160,11 +160,11 @@
     <Compile Include="Popups\AddBooking.Designer.cs">
       <DependentUpon>AddBooking.cs</DependentUpon>
     </Compile>
-    <Compile Include="Popups\ManageBooking.cs">
+    <Compile Include="Popups\ManageBookingOld.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Popups\ManageBooking.Designer.cs">
-      <DependentUpon>ManageBooking.cs</DependentUpon>
+    <Compile Include="Popups\ManageBookingOld.Designer.cs">
+      <DependentUpon>ManageBookingOld.cs</DependentUpon>
     </Compile>
     <Compile Include="Popups\PopupAbout.cs">
       <SubType>Form</SubType>
@@ -202,11 +202,11 @@
     <Compile Include="Popups\PopupManageRoom.Designer.cs">
       <DependentUpon>PopupManageRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Popups\PopupRoomManageOptions.cs">
+    <Compile Include="Popups\PopupRoomManageOptionsOld.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Popups\PopupRoomManageOptions.Designer.cs">
-      <DependentUpon>PopupRoomManageOptions.cs</DependentUpon>
+    <Compile Include="Popups\PopupRoomManageOptionsOld.Designer.cs">
+      <DependentUpon>PopupRoomManageOptionsOld.cs</DependentUpon>
     </Compile>
     <Compile Include="Popups\ViewBookings.cs">
       <SubType>Form</SubType>
@@ -277,8 +277,8 @@
     <EmbeddedResource Include="Popups\AddBooking.resx">
       <DependentUpon>AddBooking.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Popups\ManageBooking.resx">
-      <DependentUpon>ManageBooking.cs</DependentUpon>
+    <EmbeddedResource Include="Popups\ManageBookingOld.resx">
+      <DependentUpon>ManageBookingOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\PopupAbout.resx">
       <DependentUpon>PopupAbout.cs</DependentUpon>
@@ -298,8 +298,8 @@
     <EmbeddedResource Include="Popups\PopupManageRoom.resx">
       <DependentUpon>PopupManageRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Popups\PopupRoomManageOptions.resx">
-      <DependentUpon>PopupRoomManageOptions.cs</DependentUpon>
+    <EmbeddedResource Include="Popups\PopupRoomManageOptionsOld.resx">
+      <DependentUpon>PopupRoomManageOptionsOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popups\ViewBookings.resx">
       <DependentUpon>ViewBookings.cs</DependentUpon>

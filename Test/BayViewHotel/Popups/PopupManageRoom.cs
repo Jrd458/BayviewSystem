@@ -42,6 +42,7 @@ namespace BayViewHotel.Popups
                 {
                     while (reader.Read())
                     {
+                        // Insert room data into inputs
                         txtRoomNo.Text = reader["RoomNo"].ToString();
                         comboRoomType.SelectedIndex = comboRoomType.FindStringExact(Convert.ToString(reader["RoomType"]));
                         chkDisability.Checked = Convert.ToBoolean(reader["Disability"]);
@@ -63,6 +64,7 @@ namespace BayViewHotel.Popups
             LoadBookings();
         }
 
+        // Display all bookings for the room that is selected
         public void LoadBookings()
         {
             try
@@ -71,7 +73,34 @@ namespace BayViewHotel.Popups
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("RetrieveBookingsForRoom", con);
+                    /* SQL SERVER STORED PROCEDURE
+                     * 
+                     * ALTER PROCEDURE [dbo].[RetrieveBookingsForRoom]
+	                        @RoomNo VARCHAR(32)
+                        AS
+	                        SELECT
+		                         b.BookingID
+		                        ,c.FirstName + ' ' + c.LastName AS 'CustomerFullName'
+		                        ,b.CheckInDate
+		                        ,b.CheckOutDate 
+	                        FROM
+		                        tblBooking b
+	                        INNER JOIN
+		                        tblRoom r
+	                        ON
+		                        b.RoomID = r.RoomID
+	                        INNER JOIN
+		                        tblCustomer c
+	                        ON
+		                        b.CustomerID = c.CustomerID
+	                        WHERE
+		                        r.RoomNo = @RoomNo
+	                        AND
+		                        b.Status = 'Active'
+                     * 
+                     */
+
+                    SqlCommand cmd = new SqlCommand("RetrieveBookingsForRoom", con); // Call stored procedure and provide room number
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@RoomNo", _roomNo));
 
@@ -91,15 +120,15 @@ namespace BayViewHotel.Popups
                         row["CustomerFullName"] = reader["CustomerFullName"];
                         row["CheckInDate"] = reader["CheckInDate"];
                         row["CheckOutDate"] = reader["CheckOutDate"];
-                        dt.Rows.Add(row);
+                        dt.Rows.Add(row); // Add rows to data table
                     }
 
                     dt.Columns["CustomerFullName"].ColumnName = "Full Name";
                     dt.Columns["CheckInDate"].ColumnName = "Check In";
                     dt.Columns["CheckOutDate"].ColumnName = "Check Out";
 
-                    dataGridActiveBookings.DataSource = dt;
-                    dataGridActiveBookings.Columns["BookingID"].Visible = false;
+                    dataGridActiveBookings.DataSource = dt; // Set source of grid view to the data table we created
+                    dataGridActiveBookings.Columns["BookingID"].Visible = false; // Hide booking IDs but keep in the table so user has the option to manage the booking
 
                     con.Close();
                 }
@@ -115,16 +144,17 @@ namespace BayViewHotel.Popups
             this.Close();
         }
 
+        // Update room details
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             string editedRoomNo = txtRoomNo.Text;
             string roomType = comboRoomType.SelectedItem.ToString();
             bool isDisabledRoom = chkDisability.Checked;
 
-            if (comboRoomType.SelectedItem != null &&
+            if (comboRoomType.SelectedItem != null && // Room validation
                 txtRoomNo.Text != "")
             {
-                if (!IsRoomNumberConflict(editedRoomNo))
+                if (!IsRoomNumberConflict(editedRoomNo)) // Ensure there's no room with the same room number
                 {
                     try
                     {
@@ -141,7 +171,7 @@ namespace BayViewHotel.Popups
                         cmd.ExecuteScalar();
 
                         con.Close();
-                        _master.RefreshRooms();
+                        _master.RefreshRooms(); // After saving refresh the rooms list in the room screen
                         this.Close();
                     }
                     catch (Exception ex)
@@ -159,6 +189,7 @@ namespace BayViewHotel.Popups
             }
         }
 
+        // Check if there's aleady a room with the entered room number, returns true or false depending on the results
         private bool IsRoomNumberConflict(string roomNo)
         {
             bool result = false;
@@ -178,7 +209,7 @@ namespace BayViewHotel.Popups
 
                     int count = (int)cmd.ExecuteScalar();
 
-                    if (count > 0)
+                    if (count > 0) // Check if there's more than 1 result, if so then it already exists
                     {
                         result = true;
                     }
@@ -198,12 +229,14 @@ namespace BayViewHotel.Popups
             return result;
         }
 
+        // Create booking for this room
         private void btnCreateBooking_Click(object sender, EventArgs e)
         {
-            AddBooking form = new AddBooking("", "", null);
+            AddBooking form = new AddBooking("", "", null); // Set to default dates
             form.ShowDialog();
         }
 
+        // If a booking is double clicked for the selected room then the manage room popup will appear and refresh the list afterwards
         private void dataGridActiveBookings_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow selectedRow = dataGridActiveBookings.Rows[e.RowIndex];

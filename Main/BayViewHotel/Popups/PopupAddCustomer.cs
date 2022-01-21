@@ -14,12 +14,15 @@ namespace BayViewHotel.Popups
 {
     public partial class PopupAddCustomer : Form
     {
+        // Allows us to call functions/set variables in booking form
         private Customers _master;
+        private PopupCustomerSelector _master2;
 
-        public PopupAddCustomer(Customers master)
+        public PopupAddCustomer(Customers master, PopupCustomerSelector master2)
         {
             InitializeComponent();
             _master = master;
+            _master2 = master2;
         }
 
         private void btnCustomerCancel_Click(object sender, EventArgs e)
@@ -27,13 +30,13 @@ namespace BayViewHotel.Popups
             this.Close();
         }
 
+        // Main add customer function
         private void btnCustomerSubmit_Click(object sender, EventArgs e)
         {
-            if (comboTitle.SelectedItem != null &&
+            if (comboTitle.SelectedItem != null && // Validation for details section
                 txtFirstName.Text != "" &&
                 txtLastName.Text != "" &&
                 txtContactNo.Text != "" &&
-                //dateDateOfBirth.Value != new DateTime(1900, 1, 1) &&
                 txtEmail.Text != "")
             {
                 try
@@ -44,6 +47,7 @@ namespace BayViewHotel.Popups
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO tblCustomer (Title, FirstName, LastName, AddressLine1, AddressLine2, AddressLine3, AddressLine4, Postcode, ContactNo, EmailAddress, DateOfBirth) VALUES 
                                                    (@title,@firstname,@lastname,@addressline1,@addressline2,@addressline3,@addressline4,@postcode,@contactno,@emailaddress,@dob)", con);
 
+                    // Grabs inputs and adds to insert parameters
                     cmd.Parameters.AddWithValue("@title", comboTitle.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@firstname", txtFirstName.Text);
                     cmd.Parameters.AddWithValue("@lastname", txtLastName.Text);
@@ -59,7 +63,17 @@ namespace BayViewHotel.Popups
                     cmd.ExecuteScalar();
 
                     con.Close();
-                    _master.RetrieveCustomerList();
+
+                    if (_master != null) // If it's through the customer's screen then update the customer list before this form shuts
+                    {
+                        _master.RetrieveCustomerList();
+                    } 
+
+                    if (_master2 != null) // If added through the booking customer selector then refresh the list when it shuts
+                    {
+                        _master2.RetrieveCustomerList();
+                    }
+
                     this.Close();
                 }
                 catch (Exception ex)
@@ -69,7 +83,7 @@ namespace BayViewHotel.Popups
 
             } else
             {
-                lblValidationError.Visible = true;
+                lblValidationError.Visible = true; // Show validation error if validation fails
             }
         }
     }

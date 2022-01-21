@@ -21,22 +21,47 @@ namespace BayViewHotel.Forms
         private void Accounts_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtSearchBookingNumber;
-            RetrieveCustomerList();
+            RetrieveInvoiceList();
         }
 
         private void txtSearchBookingNumber_KeyUp(object sender, KeyEventArgs e)
         {
-            RetrieveCustomerList(); // Refresh the list each time a new keystroke is detected for search function
+            RetrieveInvoiceList(); // Refresh the list each time a new keystroke is detected for search function
         }
 
         // Retrieves invoice records from tblInvoice using the search bar in the invoicing screen.
-        public void RetrieveCustomerList()
+        public void RetrieveInvoiceList()
         {
             try
             {
                 using (SqlConnection con = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     con.Open();
+
+                    /* SQL SERVER VIEW
+                     * 
+                     * ALTER VIEW [dbo].[Invoicing]
+                        AS
+	                        SELECT
+		                         i.InvoiceID
+		                        ,b.BookingID
+		                        ,c.Title + ' ' + c.FirstName + ' ' + c.LastName AS CustomerName
+		                        ,i.TotalCost
+	                        FROM
+		                        tblInvoice i
+
+	                        INNER JOIN
+		                        tblCustomer c
+	                        ON c.CustomerID = i.CustomerID
+
+	                        INNER JOIN
+		                        tblBooking b
+	                        ON b.BookingID = i.BookingID
+
+	                        WHERE
+		                        b.Status = 'Active'
+                     * 
+                     */
 
                     SqlCommand cmd = new SqlCommand(@"SELECT * FROM Invoicing WHERE InvoiceID LIKE '%' + @param + '%'", con);
                     cmd.Parameters.Add(new SqlParameter("@param", txtSearchBookingNumber.Text)); // Inserts search box text

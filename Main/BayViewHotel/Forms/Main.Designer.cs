@@ -39,7 +39,9 @@
             this.btnMenuHome = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.panelViewForm = new System.Windows.Forms.Panel();
+            this.lblStaffGreeting = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panelLogo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -95,12 +97,12 @@
             this.btnMenuAccounts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuAccounts.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuAccounts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuAccounts.Location = new System.Drawing.Point(0, 469);
+            this.btnMenuAccounts.Location = new System.Drawing.Point(0, 476);
             this.btnMenuAccounts.Name = "btnMenuAccounts";
             this.btnMenuAccounts.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuAccounts.Size = new System.Drawing.Size(238, 90);
             this.btnMenuAccounts.TabIndex = 5;
-            this.btnMenuAccounts.Text = "accounts";
+            this.btnMenuAccounts.Text = "Invoicing";
             this.btnMenuAccounts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuAccounts.UseVisualStyleBackColor = false;
             this.btnMenuAccounts.Click += new System.EventHandler(this.btnMenuAccounts_Click);
@@ -115,12 +117,12 @@
             this.btnMenuRooms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuRooms.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuRooms.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuRooms.Location = new System.Drawing.Point(0, 379);
+            this.btnMenuRooms.Location = new System.Drawing.Point(0, 386);
             this.btnMenuRooms.Name = "btnMenuRooms";
             this.btnMenuRooms.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuRooms.Size = new System.Drawing.Size(238, 90);
             this.btnMenuRooms.TabIndex = 4;
-            this.btnMenuRooms.Text = "rooms";
+            this.btnMenuRooms.Text = "Rooms";
             this.btnMenuRooms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuRooms.UseVisualStyleBackColor = false;
             this.btnMenuRooms.Click += new System.EventHandler(this.btnMenuRooms_Click);
@@ -135,12 +137,12 @@
             this.btnMenuCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuCustomers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuCustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuCustomers.Location = new System.Drawing.Point(0, 289);
+            this.btnMenuCustomers.Location = new System.Drawing.Point(0, 296);
             this.btnMenuCustomers.Name = "btnMenuCustomers";
             this.btnMenuCustomers.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuCustomers.Size = new System.Drawing.Size(238, 90);
             this.btnMenuCustomers.TabIndex = 3;
-            this.btnMenuCustomers.Text = "customers";
+            this.btnMenuCustomers.Text = "Customers";
             this.btnMenuCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuCustomers.UseVisualStyleBackColor = false;
             this.btnMenuCustomers.Click += new System.EventHandler(this.btnMenuCustomers_Click);
@@ -155,12 +157,12 @@
             this.btnMenuBooking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuBooking.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuBooking.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuBooking.Location = new System.Drawing.Point(0, 199);
+            this.btnMenuBooking.Location = new System.Drawing.Point(0, 206);
             this.btnMenuBooking.Name = "btnMenuBooking";
             this.btnMenuBooking.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuBooking.Size = new System.Drawing.Size(238, 90);
             this.btnMenuBooking.TabIndex = 2;
-            this.btnMenuBooking.Text = "booking";
+            this.btnMenuBooking.Text = "Booking";
             this.btnMenuBooking.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuBooking.UseVisualStyleBackColor = false;
             this.btnMenuBooking.Click += new System.EventHandler(this.btnMenuBooking_Click);
@@ -174,12 +176,12 @@
             this.btnMenuHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnMenuHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuHome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuHome.Location = new System.Drawing.Point(0, 109);
+            this.btnMenuHome.Location = new System.Drawing.Point(0, 116);
             this.btnMenuHome.Name = "btnMenuHome";
             this.btnMenuHome.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
             this.btnMenuHome.Size = new System.Drawing.Size(238, 90);
             this.btnMenuHome.TabIndex = 1;
-            this.btnMenuHome.Text = "home";
+            this.btnMenuHome.Text = "Home";
             this.btnMenuHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuHome.UseVisualStyleBackColor = false;
             this.btnMenuHome.Click += new System.EventHandler(this.btnMenuHome_Click);
@@ -187,10 +189,11 @@
             // panelLogo
             // 
             this.panelLogo.BackgroundImage = global::BayViewHotel.Properties.Resources.logo;
+            this.panelLogo.Controls.Add(this.lblStaffGreeting);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(238, 109);
+            this.panelLogo.Size = new System.Drawing.Size(238, 116);
             this.panelLogo.TabIndex = 0;
             // 
             // panelViewForm
@@ -199,6 +202,15 @@
             this.panelViewForm.Name = "panelViewForm";
             this.panelViewForm.Size = new System.Drawing.Size(951, 764);
             this.panelViewForm.TabIndex = 1;
+            // 
+            // lblStaffGreeting
+            // 
+            this.lblStaffGreeting.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStaffGreeting.Location = new System.Drawing.Point(0, 96);
+            this.lblStaffGreeting.Name = "lblStaffGreeting";
+            this.lblStaffGreeting.Size = new System.Drawing.Size(238, 23);
+            this.lblStaffGreeting.TabIndex = 0;
+            this.lblStaffGreeting.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Main
             // 
@@ -217,6 +229,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
+            this.panelLogo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -233,6 +246,7 @@
         private System.Windows.Forms.Panel panelViewForm;
         private System.Windows.Forms.Button btnInfoBox;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label lblStaffGreeting;
     }
 }
 

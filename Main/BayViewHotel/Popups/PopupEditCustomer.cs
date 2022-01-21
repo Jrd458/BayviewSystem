@@ -14,7 +14,7 @@ namespace BayViewHotel.Popups
 {
     public partial class PopupEditCustomer : Form
     {
-        private Customers _master;
+        private Customers _master;  // Allows us to call functions/set variables in booking form
         private string _customerId;
 
         public PopupEditCustomer(Customers master, string customerId)
@@ -26,7 +26,7 @@ namespace BayViewHotel.Popups
 
         private void PopupEditCustomer_Load(object sender, EventArgs e)
         {
-            this.Text = "Viewing customer ID #" + _customerId;
+            this.Text = "Viewing customer ID #" + _customerId; // Set form title and label for current customer
             lblEditCustomer.Text = "Manage Customer (ID: " + _customerId + ")";
 
             try
@@ -37,12 +37,13 @@ namespace BayViewHotel.Popups
                 SqlCommand cmd = new SqlCommand(@"SELECT Title,FirstName,LastName,AddressLine1,AddressLine2,AddressLine3,AddressLine4,Postcode,ContactNo,EmailAddress,DateOfBirth FROM tblCustomer WHERE CustomerID = @customerid", con);
                 cmd.Parameters.AddWithValue("@customerid", _customerId);
 
-                SqlDataReader reader = cmd.ExecuteReader();
+                SqlDataReader reader = cmd.ExecuteReader(); // Get customer data
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
+                        // Input customer data from table
                         comboTitle.SelectedIndex = comboTitle.FindStringExact(Convert.ToString(reader["Title"]));
                         txtFirstName.Text = Convert.ToString(reader["FirstName"]);
                         txtLastName.Text = Convert.ToString(reader["LastName"]);
@@ -69,13 +70,13 @@ namespace BayViewHotel.Popups
             }
         }
 
+        // Main save customer function
         private void btnCustomerSubmit_Click(object sender, EventArgs e)
         {
-            if (comboTitle.SelectedItem != null &&
+            if (comboTitle.SelectedItem != null && // Validation for details section
                 txtFirstName.Text != "" &&
                 txtLastName.Text != "" &&
                 txtContactNo.Text != "" &&
-                //dateDateOfBirth.Value != new DateTime(1900, 1, 1) &&
                 txtEmail.Text != "")
             {
                 try
@@ -85,6 +86,7 @@ namespace BayViewHotel.Popups
 
                     SqlCommand cmd = new SqlCommand(@"UPDATE tblCustomer SET Title = @title, FirstName = @firstname, LastName = @lastname, AddressLine1 = @addressline1, AddressLine2 = @addressline2, AddressLine3 = @addressline3, AddressLine4 = @addressline4, Postcode = @postcode, ContactNo = @contactno, EmailAddress = @emailaddress, DateOfBirth = @dob WHERE CustomerID = @customerid", con);
 
+                    // Grabs inputs and adds to insert parameters
                     cmd.Parameters.AddWithValue("@customerid", _customerId);
                     cmd.Parameters.AddWithValue("@title", comboTitle.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@firstname", txtFirstName.Text);
@@ -101,7 +103,7 @@ namespace BayViewHotel.Popups
                     cmd.ExecuteScalar();
 
                     con.Close();
-                    _master.RetrieveCustomerList();
+                    _master.RetrieveCustomerList(); // Refresh the customer list in customer screen before form shuts
                     this.Close();
                 }
                 catch (Exception ex)
@@ -120,8 +122,10 @@ namespace BayViewHotel.Popups
             this.Close();
         }
 
+        // Delete an account from the system
         private void btnCloseAccount_Click(object sender, EventArgs e)
         {
+            // Yes/no popup to confirm deletion
             DialogResult dialogResult = MessageBox.Show("You are about to close this account which will erase all details of this customer from the hotel system." + Environment.NewLine + Environment.NewLine + "Are you sure you want to continue?", "Close Account", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
@@ -138,7 +142,7 @@ namespace BayViewHotel.Popups
                     cmd.ExecuteScalar();
 
                     con.Close();
-                    _master.RetrieveCustomerList();
+                    _master.RetrieveCustomerList(); // Refresh the list after deletion
                     this.Close();
                 }
                 catch (Exception ex)
@@ -146,6 +150,13 @@ namespace BayViewHotel.Popups
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        // Create a booking for this specific customer
+        private void btnCreateBooking_Click(object sender, EventArgs e)
+        {
+            AddBooking form = new AddBooking("", "", _customerId); // Input current customer ID which is loaded into the booking form
+            form.ShowDialog();
         }
     }
 }
