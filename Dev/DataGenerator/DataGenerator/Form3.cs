@@ -29,7 +29,7 @@ namespace DataGenerator
         {
             try
             {
-                SqlConnection con = new SqlConnection(@"Data Source=51.195.252.182,443;Initial Catalog=BayViewHotel;Persist Security Info=True;User ID=sa;Password=Cambrian@1");
+                SqlConnection con = new SqlConnection(@"Data Source=,443;Initial Catalog=BayViewHotel;Persist Security Info=True;User ID=sa;Password=");
 
                 string query = "INSERT INTO tblStaff (UserName,Title, Password, Role, FirstName, LastName, AddressLine1, AddressLine2, AddressLine3, AddressLine4, Postcode, ContactNo, EmailAddress,DateOfBirth)" +
                     "VALUES (@username, @title, @password, @role, @firstname, @lastname, @addressline1, @addressline2, @addressline3, @addressline4, @postcode, @contactno, @emailaddress,@dob)";
